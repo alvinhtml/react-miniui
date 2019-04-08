@@ -1,0 +1,96 @@
+/*
+ * 下接菜单需要点击才能展开，鼠标移上去就能展开的不需要写JS
+ */
+
+
+/*******************************
+             Dropdown
+*******************************/
+.dropdown {
+
+    position: relative;
+
+    &:hover {
+		border-color: #9ca8b0;
+	}
+
+    &.selection {
+
+    }
+
+    & .dropdown-main {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+    }
+}
+
+.icon-dropdown {
+    vertical-align: middle;
+    display: inline-block;
+    background: none;
+    width: 0;
+    height: 0;
+    border: 0.25em solid rgba(255,255,255,0);
+    border-top: 0.42857143em solid #838fa1;
+    border-bottom: 0;
+    opacity: 0.8;
+    margin-left: 6px;
+
+    &.white {
+        border-top: 0.42857143em solid #fff;
+    }
+
+}
+
+
+.dropdown-main {
+    border-radius: 0.25em;
+    margin-top: 0.5em;
+}
+
+
+
+
+
+
+
+
+
+
+/*******************************
+            animate
+*******************************/
+
+.dropdown-main.transition {
+	  -webkit-animation-iteration-count: 1;
+     -moz-animation-iteration-count: 1;
+          animation-iteration-count: 1;
+  -webkit-animation-fill-mode: both;
+     -moz-animation-fill-mode: both;
+          animation-fill-mode: both;
+     -webkit-transform-origin: 0 0;
+             transform-origin: 0 0;
+}
+
+.dropdown-main.transition {
+	visibility: visible;
+	opacity: 0;
+	-webkit-transform: scale(0);
+	-moz-transform: scale(0);
+	transform: scale(0);
+	-webkit-transition: opacity ease-out .3s, -webkit-transform ease-out .3s;
+	transition: opacity ease-out .3s, transform ease-out .3s;
+}
+
+
+.dropdown-main.transition.visible {
+    visibility: visible;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+    -webkit-transition: opacity ease-in .3s, -webkit-transform ease-in .3s;
+    transition: opacity ease-in .3s, transform ease-in .3s;
+}

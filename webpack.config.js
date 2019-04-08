@@ -24,7 +24,7 @@ module.exports = {
     mode: 'development', //两种模式， production (生产模式) development（开发模式）
 
     entry: {
-        index: './src/index.jsx'
+        index: './src/home.js'
     },
 
     devtool: 'source-map', //源码映射，生成一个映射文件，帮我们定位源码文件
@@ -67,7 +67,8 @@ module.exports = {
                     options: { //用 babel-loader 转化 ES6-ES5
                         presets: [ //这里是大插件集合
                             '@babel/preset-env',
-                            '@babel/preset-react'
+                            '@babel/preset-react',
+                            '@babel/preset-flow'
                         ],
                         plugins: [ //这里可以配置一些小的插件
                             '@babel/plugin-proposal-class-properties',

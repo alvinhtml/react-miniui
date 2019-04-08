@@ -1,0 +1,279 @@
+@import "./miniui.less";
+
+/*******************************
+            Button
+*******************************/
+
+.button {
+	cursor: pointer;
+	display: inline-block;
+	min-height: 1em;
+	padding: 0.71428571em 1.5em;
+	outline: none;
+	user-select: none;
+	color: @gray;
+ 	background-color: @lightgray;
+	border-width: 0;
+	border-radius: 0.25em;
+	font-size: 1em;
+	height: 2.57142857em;
+	line-height: 1;
+	font-weight: bold;
+	font-style: normal;
+	text-align: center;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: Lato, "Helvetica Neue", Helvetica, 'Microsoft YaHei' Arial, "\5b8b\4f53", sans-serif;
+	background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.05));
+	box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.08) inset;
+	box-sizing: border-box;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	transition: opacity 0.25s ease, background-color 0.25s ease, color 0.25s ease, box-shadow 0.25s ease;
+
+	/*--------------
+	     Hover
+	---------------*/
+	&:hover,
+	&.hover {
+		background-image: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.08));
+	}
+
+	&.active:hover {
+		background-image: none;
+	}
+
+	&:hover icon {
+		opacity: 0.85;
+	}
+
+	/*--------------
+	     Active
+	---------------*/
+	&.active,
+	&:active {
+		background-color: #EAEAEA;
+		background-image: none;
+		-webkit-box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05) inset !important;
+		box-shadow: 0px 0px 0px 1px rgba(0, 0, 0, 0.05) inset !important;
+		color: rgba(0, 0, 0, 0.7);
+	}
+
+	/*--------------------
+	    Size
+	---------------------*/
+	&.mini {
+		font-size: 12px !important;
+		padding: 0.25em 0.5em;
+		height: 1.66666666em;
+		font-weight: normal;
+	}
+	&.label.mini { padding-left: 2.1666em; }
+	&.label.mini i {
+		width: 1.6666em;
+		padding: 0.25em 0.25em  0.25em  0.25em;
+	}
+
+	&.tiny {
+		font-size: 12px !important;
+		padding: 0.5em 0.5em;
+		height: 2em;
+		font-weight: normal;
+	}
+	&.label.tiny { padding-left: 2.5em; }
+	&.label.tiny i {
+		width: 2em;
+		padding: 0.4285em;
+	}
+
+	&.small {
+		font-size: 14px !important;
+		padding: 0.57142857em 0.5em;
+		height: 2.28571428em;
+	}
+	&.label.small { padding-left: 2.7857em; }
+	&.label.small i {
+		width: 2.28571428em;
+		padding: 0.57142857em;
+	}
+
+	&.large { font-size: 16px !important; }
+	&.big { font-size: 20px !important; }
+	&.huge { font-size: 24px !important; }
+	&.massive { font-size: 30px !important; }
+
+	/*--------------
+	     group
+	---------------*/
+
+	&.label {
+		padding-left: 3.6428em;
+		position: relative;
+	}
+
+	&.label i {
+		background-color: rgba(0, 0, 0, 0.05);
+		box-sizing: border-box;
+		line-height: 1em;
+		font-size: 1em;
+		width: 2.5714em;
+		height: 100%;
+		position: absolute;
+		left: 0;
+		top: 0;
+		padding: 0.7857em;
+		box-shadow: -1px 0 0 0 rgba(0, 0, 0, 0.05) inset;
+	}
+
+	/*--------------
+	    Loading
+	---------------*/
+	&.loading {
+		position: relative;
+		cursor: default;
+		background-color: #FFFFFF !important;
+		color: transparent !important;
+		transition: all 0s linear;
+	}
+
+	&.loading::after {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		content: '';
+		background: transparent url(../images/loader-mini.gif) no-repeat 50% 50%;
+	}
+
+	/*-------------------
+	      Disabled
+	--------------------*/
+	&.disabled,
+	&:disabled,
+	&.disabled:hover,
+	&:disabled:hover,
+	&.disabled:active,
+	&:disabled:active {
+		cursor: not-allowed;
+		background-color: #DDDDDD !important;
+		color: rgba(0, 0, 0, 0.5) !important;
+		opacity: 0.3 !important;
+		background-image: none !important;
+		box-shadow: none !important;
+	}
+}
+
+button::-moz-focus-inner,
+input[type="button"]::-moz-focus-inner,
+input[type="reset"]::-moz-focus-inner,
+input[type="submit"]::-moz-focus-inner {
+	border:none;
+	padding:0;
+}
+
+/*-------------------
+       Color
+--------------------*/
+.button-style(@name;@color){
+	.@{name}.button {
+		background-color: @color;
+		color: @white;
+		border-color: @color;
+		border-style: solid;
+	}
+	.@{name}.button:hover {
+		background-color: lighten(@color,5%);
+		border-color: lighten(@color,2%);
+	}
+	.@{name}.button:active {
+		background-color: darken(@color,10%);
+		border-color: darken(@color,10%);
+	}
+}
+
+.button-style( lightgray; @lightgray );
+.button-style( gray; @gray );
+.button-style( dark; @dark );
+.button-style( red; @red );
+.button-style( orange; @orange );
+.button-style( yellow; @yellow );
+.button-style( olive; @olive );
+.button-style( green; @green );
+.button-style( teal; @teal );
+.button-style( blue; @blue );
+.button-style( violet; @violet );
+.button-style( purple; @purple );
+.button-style( pink; @pink );
+.button-style( brown; @brown );
+.button.lightgray { color: @gray; }
+
+
+/*--------------
+     style
+---------------*/
+
+.button-basic(@name;@color){
+	.@{name}.button.basic {
+		background-color: transparent !important;
+		color: @color;
+		border: 1px solid @color;
+		font-weight: normal;
+	}
+	.@{name}.button.basic:hover {
+		border-color: lighten(@color,2%);
+		color: lighten(@color,5%);
+	}
+	.@{name}.button.basic:active {
+		border-color: darken(@color,10%);
+		color: darken(@color,10%);
+	}
+}
+
+.button-basic( lightgray; @lightgray );
+.button-basic( gray; @gray );
+.button-basic( dark; @dark );
+.button-basic( red; @red );
+.button-basic( orange; @orange );
+.button-basic( yellow; @yellow );
+.button-basic( olive; @olive );
+.button-basic( green; @green );
+.button-basic( teal; @teal );
+.button-basic( blue; @blue );
+.button-basic( violet; @violet );
+.button-basic( purple; @purple );
+.button-basic( pink; @pink );
+.button-basic( brown; @brown );
+
+.button-circular {
+	padding-left: 0;
+	padding-right: 0;
+	text-align: center;
+}
+
+.button.circular {
+	border-radius: 1.2857em;
+	min-width: 2.5714em;
+	.button-circular;
+}
+.button.circular.mini {
+	border-radius: 0.8333em;
+	min-width: 1.6666em;
+	.button-circular;
+}
+.button.circular.tiny {
+	border-radius: 1em;
+	min-width: 2em;
+	.button-circular;
+}
+.button.circular.small {
+	border-radius: 1.1428em;
+	min-width: 2.2857em;
+	.button-circular;
+}
+
+/*--------------
+     group
+---------------*/
+.spaced .button {
+	margin-right: 0.5em;
+}
