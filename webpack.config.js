@@ -8,6 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin') //压缩JS
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin') //压缩CSS
 const FileManagerPlugin = require('filemanager-webpack-plugin'); //webpack copy move delete mkdir archive
 
+
 module.exports = {
 
     optimization: { //优化项
@@ -36,7 +37,7 @@ module.exports = {
 
     resolve: {
         modules: [path.resolve('node_modules')],
-        extensions: ['.js', '.jsx', '.less'] //配置省略后缀名
+        extensions: ['.js', '.jsx', '.less', '.css'] //配置省略后缀名
     },
 
     module: { //模块

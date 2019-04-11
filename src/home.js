@@ -5,6 +5,7 @@ import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 import './less/page.less';
 
 import ButtonPage from './container/button.js';
+import formPage from './container/form.js';
 
 class Home extends Component {
   render() {
@@ -39,6 +40,7 @@ class SlideBar extends Component {
           <li>
             <ul>
               <li><Link to="/button"><span>Button</span><span className="comment">按钮</span></Link></li>
+              <li><Link to="/input"><span>Input</span><span className="comment">输入框</span></Link></li>
               <li><Link to="/"><span>Icon</span><span className="comment">图标</span></Link></li>
               <li><Link to="/"><span>Typography</span><span className="comment">排版</span></Link></li>
             </ul>
@@ -71,7 +73,7 @@ class SlideBar extends Component {
               <li><Link to="/"><span>DatePicker</span><span className="comment">日期选择框</span></Link></li>
               <li><Link to="/"><span>Form</span><span className="comment">表单</span></Link></li>
               <li><Link to="/"><span>InputNumber</span><span className="comment">数字输入框</span></Link></li>
-              <li><Link to="/"><span>Input</span><span className="comment">输入框</span></Link></li>
+              <li><Link to="/input"><span>Input</span><span className="comment">输入框</span></Link></li>
               <li><Link to="/"><span>Mention</span><span className="comment">提及</span></Link></li>
               <li><Link to="/"><span>Rate</span><span className="comment">评分</span></Link></li>
               <li><Link to="/"><span>Radio</span><span className="comment">单选框</span></Link></li>
@@ -133,6 +135,7 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/button' component={ButtonPage}/>
+          <Route path='/input' component={formPage}/>
         </Switch>
       </div>
     )

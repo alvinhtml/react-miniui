@@ -98,6 +98,20 @@
 
 	&.big { font-size: 20px !important; }
 
+	/*-------------------
+				Shape
+	--------------------*/
+	&.circle {
+		border-radius: 1.28571429em;
+		padding-left: 0;
+		padding-right: 0;
+		min-width: 2.57142857em;
+		&.mini {
+			border-radius: 50%;
+			height: 0.83333333em;
+		}
+	}
+
 	/*--------------
 	   label icon
 	---------------*/
@@ -164,16 +178,6 @@
 			border: 1px solid @lightgray;
 		}
 	}
-
-
-	/*-------------------
-	      Shape
-	--------------------*/
-	&.circle {
-		border-radius: 50%;
-	}
-
-
 }
 
 button::-moz-focus-inner,
@@ -283,6 +287,8 @@ input[type="submit"]::-moz-focus-inner {
 		color: darken(@gray,10%);
 	}
 }
+
+
 
 /*--------------
      group

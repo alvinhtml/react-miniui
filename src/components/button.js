@@ -4,6 +4,8 @@ import React, { Component } from 'react';
 
 import '../less/button.less';
 
+import {Icon} from './icon';
+
 
 type Props = {
 	color: ?string;
@@ -21,7 +23,7 @@ type Props = {
 export const Button = (props: Props) => {
 	const className = ['button'];
 
-	const {color, type, size, block, icon, loading, ...others} = props;
+	const {color, type, size, block, icon, loading, space, ...others} = props;
 	const {disabled} = props;
 
 	if (color) {
@@ -34,6 +36,10 @@ export const Button = (props: Props) => {
 
 	if (size) {
 		className.push(size);
+	}
+
+	if (space) {
+		className.push(space);
 	}
 
 	if (block) {
@@ -52,7 +58,7 @@ export const Button = (props: Props) => {
 		className.push('disabled');
 	}
 
-	const icons = icon ? <i className={icon} /> : null;
+	const icons = icon ? <Icon icon={icon} /> : null;
 
 	if (props.href) {
 		return (<a className={className.join(' ')} {...others}>{icons}{props.children}</a>);

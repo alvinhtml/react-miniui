@@ -36,9 +36,7 @@ export default class ButtonPage extends Component {
     ]
     return(
       <div>
-        <h1>MiniUI</h1>
-        <p>1</p>
-        <h2>Button</h2>
+        <h1>Button</h1>
         <h3>Basic</h3>
         <div className="row spaced">
           {colors.map(v => <Button type="basic" key={v} color={v}>{v}</Button>)}
@@ -57,8 +55,14 @@ export default class ButtonPage extends Component {
         </div>
         <h3>Disabled & Loading</h3>
         <div className="row spaced">
-          <Button key="loading" loading color="red">loading</Button>
           <Button key="disabled" disabled color="green">disabled</Button>
+          <Button key="loading" loading color="red">loading</Button>
+        </div>
+        <h3>Circle</h3>
+        <div className="row spaced">
+          <Button space="circle" color="teal"><i className="icon-social-twitter"></i></Button>
+          <Button space="circle" color="green"><i className="icon-social-facebook"></i></Button>
+          <Button space="circle" color="red"><i className="icon-social-github"></i></Button>
         </div>
       </div>
     )
