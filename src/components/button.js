@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import '../less/button.less';
+import '../scss/button.scss';
 
 import {Icon} from './icon';
 

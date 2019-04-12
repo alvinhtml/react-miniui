@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 
-import '../less/form.less';
+import '../scss/form.scss';
 
 type Props = {
 	color: ?string;

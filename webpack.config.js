@@ -37,7 +37,7 @@ module.exports = {
 
     resolve: {
         modules: [path.resolve('node_modules')],
-        extensions: ['.js', '.jsx', '.less', '.css'] //配置省略后缀名
+        extensions: ['.js', '.jsx', '.scss', '.less', '.css'] //配置省略后缀名
     },
 
     module: { //模块
@@ -61,7 +61,21 @@ module.exports = {
                 ]
             },
             {
-                test: /\.js|jsx$/,
+                test: /\.(scss|sass)$/,
+                use: [
+                    MiniCssExtractPlugin.loader,
+                    'css-loader',
+                    'postcss-loader',
+                    {
+                      loader: 'sass-loader',
+                      options: {
+                        includePaths: ['./node_modules/normalize-scss/sass']
+                      }
+                    }
+                ]
+            },
+            {
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/, //排除
                 use: {
                     loader: 'babel-loader',

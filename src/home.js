@@ -2,10 +2,11 @@ import React, {Component} from 'react';
 import {render} from 'react-dom';
 import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
 
-import './less/page.less';
+import './scss/page.scss';
 
 import ButtonPage from './container/button.js';
 import formPage from './container/form.js';
+import columnPage from './container/column.js';
 
 class Home extends Component {
   render() {
@@ -48,7 +49,7 @@ class SlideBar extends Component {
           <li className="header">布局</li>
           <li>
             <ul>
-              <li><Link to="/"><span>Grid</span><span className="comment">栅格</span></Link></li>
+              <li><Link to="/column"><span>Grid</span><span className="comment">栅格</span></Link></li>
               <li><Link to="/"><span>Layout</span><span className="comment">布局</span></Link></li>
             </ul>
           </li>
@@ -136,6 +137,7 @@ class Main extends Component {
           <Route exact path='/' component={Home}/>
           <Route path='/button' component={ButtonPage}/>
           <Route path='/input' component={formPage}/>
+          <Route path='/column' component={columnPage}/>
         </Switch>
       </div>
     )

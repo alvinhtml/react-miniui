@@ -1,0 +1,59 @@
+// column
+
+@function column-width ($ratio, $amount, $gutter: 2%) {
+  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + ($ratio - 1) * $gutter;
+}
+
+@function column-offset ($ratio, $amount, $gutter: 2%) {
+  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + ($ratio + 1) * $gutter;
+}
+
+@function column-offset-first-child ($ratio, $amount, $gutter: 2%) {
+  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + $ratio * $gutter;
+}
+
+@mixin make-column ($amount, $gutter, $prefix) {
+  @for $i from 1 through $amount {
+    .col-#{$prefix}#{$i} {
+      width: column-width($i, $amount, $gutter);
+    }
+    .offset-#{$prefix}#{$i} {
+      margin-left: column-offset($i, $amount, $gutter);
+      &:first-child {
+        margin-left: column-offset-first-child($i, $amount, $gutter);
+      }
+    }
+  }
+}
+
+
+$col-12: 12;
+$con-12-margin: 2%;
+
+$col-24: 24;
+$con-24-margin: 0.8%;
+
+// span 12
+[class*="col-span"] {
+  margin-left: $con-12-margin;
+  float: left;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+@include make-column($col-12, $con-12-margin, 'span');
+
+// grid 24
+[class*="col-grid"] {
+  margin-left: $con-24-margin;
+  float: left;
+  &:first-child {
+    margin-left: 0;
+  }
+}
+@include make-column($col-24, $con-24-margin, 'grid');
+
+.row {
+  // clear both
+  @include clear-both()
+}
