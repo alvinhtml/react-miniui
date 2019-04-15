@@ -82,6 +82,10 @@ input[type="tel"] {
 		border-color: #eee;
 	}
 
+	&.input-block {
+		display: block;
+		width: 100%;
+	}
 
 }
 input:-webkit-autofill {
@@ -144,6 +148,11 @@ select {
 	height: 2.57142857em;
 	display: inline-block;
 	vertical-align: middle;
+
+	&.input-block {
+		display: block;
+		width: 100%;
+	}
 }
 
 .input-append input {

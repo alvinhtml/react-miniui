@@ -1,104 +1,116 @@
 import React, {Component} from 'react';
 
-import {Input, Textarea, Icon} from '../index';
+import {Row, Flex, Col} from '../index';
 
 export default class columnPage extends Component {
   render() {
 
     return(
       <div>
-        <h1 className="section-head">布局</h1>
+        <h1 className="section-head">栅格布局</h1>
         <h2>栅格化布局12格分</h2>
-        <div className="row demo-row align-center">
-            <div className="col-span1 bg-lightgray">span1</div>
-            <div className="col-span2 bg-lightgray">col-span2</div>
-            <div className="col-span3 bg-lightgray">col-span3</div>
-            <div className="col-span1 bg-lightgray">span1</div>
-            <div className="col-span2 bg-lightgray">col-span2</div>
-            <div className="col-span3 bg-lightgray">col-span3</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-span4 bg-lightgray">col-span4</div>
-            <div className="col-span4 bg-lightgray">col-span4</div>
-            <div className="col-span4 bg-lightgray">col-span4</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-span5 bg-lightgray">col-span5</div>
-            <div className="col-span7 bg-lightgray">col-span7</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-span6 bg-lightgray">col-span6</div>
-            <div className="col-span6 bg-lightgray">col-span6</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-span4 bg-lightgray">col-span4</div>
-            <div className="col-span8 bg-lightgray">col-span8</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-span2 bg-lightgray">col-span2</div>
-            <div className="col-span6 offset-span4 bg-lightgray">col-span6 offset-span4</div>
-        </div>
-        <div className="row align-center">
-            <div className="col-span4 bg-lightgray">col-span4</div>
-            <div className="col-span4 bg-lightgray">col-span4</div>
-            <div className="col-span4 bg-lightgray">col-span4</div>
-        </div>
+        <Row className="demo-row align-center color-white">
+          <Col span="1" className="bg-blue">span1</Col>
+          <Col span="2" className="bg-blue">col-span2</Col>
+          <Col span="3" className="bg-blue">col-span3</Col>
+          <Col span="1" className="bg-blue">span1</Col>
+          <Col span="2" className="bg-blue">col-span2</Col>
+          <Col span="3" className="bg-blue">col-span3</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="4" className="bg-blue">col-span4</Col>
+          <Col span="4" className="bg-blue">col-span4</Col>
+          <Col span="4" className="bg-blue">col-span4</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="5" className="bg-blue">col-span5</Col>
+          <Col span="7" className="bg-blue">col-span7</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="6" className="bg-blue">col-span6</Col>
+          <Col span="6" className="bg-blue">col-span6</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="4" className="bg-blue">col-span4</Col>
+          <Col span="8" className="bg-blue">col-span8</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="2" className="bg-blue">col-span2</Col>
+          <Col span="6" offset="4" className="bg-blue">col-span6 offset-span4</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col span="4" className="bg-blue">col-span4</Col>
+          <Col span="4" className="bg-blue">col-span4</Col>
+          <Col span="4" className="bg-blue">col-span4</Col>
+        </Row>
         <h2>栅格化布局24格分</h2>
-        <div className="row demo-row align-center">
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-            <div title="col-grid" className="col-grid1 bg-lightgray">1</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid1 bg-lightgray">1</div>
-            <div className="col-grid2 bg-lightgray">col-grid2</div>
-            <div className="col-grid3 bg-lightgray">col-grid3</div>
-            <div className="col-grid18 bg-lightgray">col-grid18</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid4 bg-lightgray">col-grid4</div>
-            <div className="col-grid5 bg-lightgray">col-grid5</div>
-            <div className="col-grid6 bg-lightgray">col-grid6</div>
-            <div className="col-grid5 bg-lightgray">col-grid5</div>
-            <div className="col-grid4 bg-lightgray">col-grid4</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid7 bg-lightgray">col-grid7</div>
-            <div className="col-grid8 bg-lightgray">col-grid8</div>
-            <div className="col-grid9 bg-lightgray">col-grid9</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid8 bg-lightgray">col-grid10</div>
-            <div className="col-grid8 offset-grid8 bg-lightgray">col-grid8 offset-grid8</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid16 offset-grid8 bg-lightgray">col-grid16 offset-grid8</div>
-        </div>
-        <div className="row demo-row align-center">
-            <div className="col-grid10 bg-lightgray">col-grid10</div>
-            <div className="col-grid14 bg-lightgray">col-grid14</div>
-        </div>
+        <Row className="demo-row align-center color-white">
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="1" className="bg-blue">1</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="1" className="bg-blue">1</Col>
+          <Col grid="2" className="bg-blue">col-grid2</Col>
+          <Col grid="3" className="bg-blue">col-grid3</Col>
+          <Col grid="18" className="bg-blue">col-grid18</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="4" className="bg-blue">col-grid4</Col>
+          <Col grid="5" className="bg-blue">col-grid5</Col>
+          <Col grid="6" className="bg-blue">col-grid6</Col>
+          <Col grid="5" className="bg-blue">col-grid5</Col>
+          <Col grid="4" className="bg-blue">col-grid4</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="7" className="bg-blue">col-grid7</Col>
+          <Col grid="8" className="bg-blue">col-grid8</Col>
+          <Col grid="9" className="bg-blue">col-grid9</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="8" className="bg-blue">col-grid10</Col>
+          <Col grid="8" offset="8" className="bg-blue">col-grid8 offset-grid8</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="16" offset="8" className="bg-blue">col-grid16 offset-grid8</Col>
+        </Row>
+        <Row className="demo-row align-center color-white">
+          <Col grid="10" className="bg-blue">col-grid10</Col>
+          <Col grid="14" className="bg-blue">col-grid14</Col>
+        </Row>
+        <h2>弹性栅格化布局</h2>
+        <Row className="demo-row align-center color-white flex">
+          <Col flex="1" className="bg-blue">flex1</Col>
+          <Col flex="2" className="bg-teal">flex2</Col>
+          <Col flex="3" className="bg-green">flex3</Col>
+        </Row>
+        <Row className="demo-row align-center color-white flex">
+          <Col flex="6" className="bg-red">flex6</Col>
+          <Col flex="6" className="bg-pink">flex6</Col>
+          <Col flex="6" className="bg-orange">flex6</Col>
+          <Col flex="6" className="bg-yellow">flex6</Col>
+        </Row>
       </div>
     )
   }

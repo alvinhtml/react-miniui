@@ -219,3 +219,14 @@ pre code {
 @each $name, $color in $color-list {
 	@include bg-color($name, $color);
 }
+
+// text color
+@mixin text-color ($name, $color) {
+	.color-#{$name} {
+		color: $color;
+	}
+}
+
+@each $name, $color in $color-list {
+	@include text-color($name, $color);
+}

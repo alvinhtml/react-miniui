@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {render} from 'react-dom';
-import {BrowserRouter, Switch, Route, Link} from 'react-router-dom'
+import {BrowserRouter, Switch, Route, Link} from 'react-router-dom';
 
 import './scss/page.scss';
 
 import ButtonPage from './container/button.js';
-import formPage from './container/form.js';
-import columnPage from './container/column.js';
+import FormPage from './container/form.js';
+import ColumnPage from './container/column.js';
+import IconPage from './container/icon.js';
+import TextPage from './container/text.js';
 
 class Home extends Component {
   render() {
@@ -31,19 +33,46 @@ class Header extends Component {
 }
 
 class SlideBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fixed: false
+    }
+    this.handleScroll = this.handleScroll.bind(this);
+  }
+
+  handleScroll() {
+    let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+    if (scrollTop > 74) {
+      this.setState({
+        fixed: true
+      });
+    } else {
+      this.setState({
+        fixed: false
+      });
+    }
+  }
+
+  componentWillMount() {
+    document.addEventListener('scroll', this.handleScroll, false);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleScroll);
+  }
+
   render() {
     return(
-      <div className="miniui-summary">
+      <div className={`miniui-summary ${this.state.fixed ? 'fixed' : ''}`}>
         <ul>
-          <li className="header">菜单</li>
-          <li><Link to="/"><span>Components</span><span className="comment">组件</span></Link></li>
           <li className="header">通用</li>
           <li>
             <ul>
+              <li><Link to="/text"><span>Icon</span><span className="comment">文字</span></Link></li>
+              <li><Link to="/icon"><span>Icon</span><span className="comment">图标</span></Link></li>
               <li><Link to="/button"><span>Button</span><span className="comment">按钮</span></Link></li>
               <li><Link to="/input"><span>Input</span><span className="comment">输入框</span></Link></li>
-              <li><Link to="/"><span>Icon</span><span className="comment">图标</span></Link></li>
-              <li><Link to="/"><span>Typography</span><span className="comment">排版</span></Link></li>
             </ul>
           </li>
           <li className="header">布局</li>
@@ -136,8 +165,10 @@ class Main extends Component {
         <Switch>
           <Route exact path='/' component={Home}/>
           <Route path='/button' component={ButtonPage}/>
-          <Route path='/input' component={formPage}/>
-          <Route path='/column' component={columnPage}/>
+          <Route path='/input' component={FormPage}/>
+          <Route path='/column' component={ColumnPage}/>
+          <Route path='/icon' component={IconPage}/>
+          <Route path='/text' component={TextPage}/>
         </Switch>
       </div>
     )

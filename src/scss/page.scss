@@ -23,6 +23,7 @@ main.main {
 
 .miniui-summary {
   height: 100vh;
+	width: 300px;
   overflow-x: hidden;
   overflow-y: auto;
   & > ul {
@@ -55,6 +56,18 @@ main.main {
       }
     }
   }
+
+	&.fixed {
+		position: fixed;
+		top: 0;
+		left: 0;
+	}
+
+}
+
+.miniui-body {
+	margin: 0 auto 80px;
+	max-width: 1000px;
 }
 
 .demo-row {
@@ -62,9 +75,16 @@ main.main {
 	&.align-center {
 		text-align: center;
 	}
+	&>div {
+		padding: 10px 0;
+	}
 }
 
-.miniui-body {
-  margin: 0 auto 80px;
-  max-width: 960px;
+.demo-icon {
+	width: 22%;
+	font-size: 16px;
+	margin: 1.5%;
+	i {
+		margin-right: 12px;
+	}
 }

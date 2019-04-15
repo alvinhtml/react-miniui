@@ -1,3 +1,9 @@
+@mixin flex-item($item) {
+  .flex#{$item} {
+    flex: $item;
+  }
+}
+
 .flex {
   display: flex;
 
@@ -16,4 +22,13 @@
   &-controls {
     flex: 1;
   }
+
+  @for $i from 0 through 23 {
+    @include flex-item($i);
+  }
+
+  &.flex-wrap {
+    flex-wrap: wrap;
+  }
+
 }

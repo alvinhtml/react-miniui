@@ -5,37 +5,43 @@ import React, { Component } from 'react';
 import '../scss/form.scss';
 
 type Props = {
-	color: ?string;
-	col: ?string;
-	type: ?string;
-	size: ?string;
-	htmlType: ?string;
-	disabled: ?bool;
-	onChange: ?Funcion;
-	value: ?string;
-	defaultValue: ?string;
+	color: string;
+	block: bool;
+	type: string;
+	size: string;
+	htmlType: string;
+	disabled: bool;
+	onChange: Funcion;
+	value: string;
+	defaultValue: string;
 	addonBefore: mixed;
 	addonAfter: mixed;
+	className: string;
+
 }
 
 
 export const Input = (props: Props) => {
-	const className = ['input'];
+	const classNames = ['input'];
 	const LabelClassName = [];
 
-	const {color, col, size, addonAfter, addonBefore, ...others} = props;
+	const {color, block, size, addonAfter, addonBefore, className, ...others} = props;
 	const {disabled} = props;
 
 	if (color) {
-		className.push(color);
+		classNames.push(color);
 	}
 
 	if (size) {
-		className.push(size);
+		classNames.push(size);
 	}
 
 	if (disabled) {
-		className.push('disabled');
+		classNames.push('disabled');
+	}
+
+	if (className) {
+		classNames.push(className);
 	}
 
 	if (addonBefore || addonAfter) {
@@ -50,44 +56,47 @@ export const Input = (props: Props) => {
 			LabelClassName.push('input-append');
 		}
 
-		if (col) {
-			LabelClassName.push(col);
+		if (block) {
+			LabelClassName.push("input-block");
 		}
 
 		return (
 			<label className={LabelClassName.join(' ')}>
-				<input className={className.join(' ')} {...others} />
+				<input className={classNames.join(' ')} {...others} />
 				<span className="add-on">{addon}</span>
 			</label>
 		);
 	} else {
-		if (col) {
-			className.push(col);
+		if (block) {
+			classNames.push("input-block");
 		}
 
-		return (<input className={className.join(' ')} {...others} />);
+		return (<input className={classNames.join(' ')} {...others} />);
 	}
 }
 
-
-export const Textarea = (props: Props) => {
-	const className = ['textarea'];
+type TextareaProps = {
+	className: string;
+	block: bool;
+}
+export const Textarea = (props: TextareaProps) => {
+	const classNames = ['textarea'];
 	const LabelClassName = [];
 
-	const {color, col, ...others} = props;
+	const {color, block, ...others} = props;
 	const {disabled} = props;
 
 	if (color) {
-		className.push(color);
-	}
-
-	if (col) {
-		className.push(col);
+		classNames.push(color);
 	}
 
 	if (disabled) {
-		className.push('disabled');
+		classNames.push('disabled');
 	}
 
-	return (<textarea className={className.join(' ')} {...others} />);
+	if (block) {
+		classNames.push("input-block");
+	}
+
+	return (<textarea className={classNames.join(' ')} {...others} />);
 }

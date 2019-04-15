@@ -10,6 +10,14 @@ type Props = {
 
 
 export const Icon = (props: Props) => {
-	const {icon, ...others} = props;
-	return (<i className={icon} {...others}></i>);
+	const classNames = [];
+	const {icon, className, ...others} = props;
+
+	classNames.push(icon);
+
+	if (className) {
+		classNames.push(className);
+	}
+
+	return (<i className={classNames.join(' ')} {...others}></i>);
 };

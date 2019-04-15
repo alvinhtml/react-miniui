@@ -12,7 +12,7 @@
   @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + $ratio * $gutter;
 }
 
-@mixin make-column ($amount, $gutter, $prefix) {
+@mixin make-column($amount, $gutter, $prefix) {
   @for $i from 1 through $amount {
     .col-#{$prefix}#{$i} {
       width: column-width($i, $amount, $gutter);
@@ -31,7 +31,7 @@ $col-12: 12;
 $con-12-margin: 2%;
 
 $col-24: 24;
-$con-24-margin: 0.8%;
+$con-24-margin: 1.2%;
 
 // span 12
 [class*="col-span"] {

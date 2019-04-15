@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 
 import '../scss/button.scss';
 
@@ -8,61 +8,66 @@ import {Icon} from './icon';
 
 
 type Props = {
-	color: ?string;
-	icon: ?string;
-	type: ?string;
-	htmlType: ?string;
-	href: ?string;
-	target: ?string;
-	disabled: ?bool;
-	loading: ?bool;
+	color: string;
+	icon: string;
+	type: string;
+	htmlType: string;
+	href: string;
+	target: string;
+	disabled: bool;
+	loading: bool;
 	onClick: Funcion;
+	className: string;
 }
 
 
 export const Button = (props: Props) => {
-	const className = ['button'];
+	const classNames = ['button'];
 
-	const {color, type, size, block, icon, loading, space, ...others} = props;
+	const {color, type, size, block, icon, loading, space, className, ...others} = props;
 	const {disabled} = props;
 
 	if (color) {
-		className.push(color);
+		classNames.push(color);
 	}
 
 	if (type) {
-		className.push(type);
+		classNames.push(type);
 	}
 
 	if (size) {
-		className.push(size);
+		classNames.push(size);
 	}
 
 	if (space) {
-		className.push(space);
+		classNames.push(space);
 	}
 
 	if (block) {
-		className.push('button-block');
+		classNames.push('button-block');
 	}
 
 	if (icon) {
-		className.push('label');
+		classNames.push('label');
 	}
 
 	if (loading) {
-		className.push('loading');
+		classNames.push('loading');
 	}
 
 	if (disabled) {
-		className.push('disabled');
+		classNames.push('disabled');
 	}
 
 	const icons = icon ? <Icon icon={icon} /> : null;
 
+	if (className) {
+		classNames.push(className);
+	}
+
 	if (props.href) {
-		return (<a className={className.join(' ')} {...others}>{icons}{props.children}</a>);
+		return (<a className={classNames.join(' ')} {...others}>{icons}{props.children}</a>);
 	} else {
-		return (<button className={className.join(' ')} {...others}>{icons}{props.children}</button>);
+		return (<button className={classNames.join(' ')} {...others}>{icons}{props.children}</button>);
 	}
 }
