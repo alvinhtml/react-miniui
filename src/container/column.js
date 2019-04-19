@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {Row, Flex, Col} from '../index';
+import { Row, Flex, Col } from '../index';
 
 export default class columnPage extends Component {
   render() {

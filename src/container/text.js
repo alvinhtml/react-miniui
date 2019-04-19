@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {Button} from '../index';
+import { Button } from '../index';
 
 export default class TextPage extends Component {
   render() {

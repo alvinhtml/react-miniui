@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {Icon} from '../index';
+import { Icon } from '../index';
 
 export default class IconPage extends Component {
   render() {

@@ -1,6 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 
-import {Row, Col, Input, Textarea, Icon} from '../index';
+import { Row, Col, Input, Textarea, Icon } from '../index';
 
 export default class ButtonPage extends Component {
 
@@ -27,7 +27,7 @@ export default class ButtonPage extends Component {
       'medium',
       'large',
       'big',
-    ]
+    ];
 
     return(
       <div>
@@ -57,6 +57,6 @@ export default class ButtonPage extends Component {
           <Col span="10"><Textarea block="true" type="text" placeholder="disabled" defaultValue="textarea" /></Col>
         </Row>
       </div>
-    )
+    );
   }
 }

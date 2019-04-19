@@ -9,6 +9,7 @@ import FormPage from './container/form.js';
 import ColumnPage from './container/column.js';
 import IconPage from './container/icon.js';
 import TextPage from './container/text.js';
+import BadgePage from './container/badge.js';
 
 class Home extends Component {
   render() {
@@ -66,11 +67,12 @@ class SlideBar extends Component {
     return(
       <div className={`miniui-summary ${this.state.fixed ? 'fixed' : ''}`}>
         <ul>
-          <li className="header">通用</li>
+          <li className="header">基础</li>
           <li>
             <ul>
-              <li><Link to="/text"><span>Icon</span><span className="comment">文字</span></Link></li>
+              <li><Link to="/text"><span>Text</span><span className="comment">文字</span></Link></li>
               <li><Link to="/icon"><span>Icon</span><span className="comment">图标</span></Link></li>
+              <li><Link to="/badge"><span>Badge</span><span className="comment">徽章</span></Link></li>
               <li><Link to="/button"><span>Button</span><span className="comment">按钮</span></Link></li>
               <li><Link to="/input"><span>Input</span><span className="comment">输入框</span></Link></li>
             </ul>
@@ -169,6 +171,7 @@ class Main extends Component {
           <Route path='/column' component={ColumnPage}/>
           <Route path='/icon' component={IconPage}/>
           <Route path='/text' component={TextPage}/>
+          <Route path='/badge' component={BadgePage}/>
         </Switch>
       </div>
     )

@@ -11,6 +11,8 @@ type Props = {
 	color: string;
 	icon: string;
 	type: string;
+	size: string;
+	space: string;
 	htmlType: string;
 	href: string;
 	target: string;
@@ -19,6 +21,7 @@ type Props = {
 	onClick: Funcion;
 	className: string;
 }
+
 
 
 export const Button = (props: Props) => {
@@ -70,4 +73,24 @@ export const Button = (props: Props) => {
 	} else {
 		return (<button className={classNames.join(' ')} {...others}>{icons}{props.children}</button>);
 	}
+}
+
+
+
+
+type groupProps = {
+	className: string;
+}
+
+export const ButtonGroup = (props: groupProps) => {
+	const classNames = ['button-group'];
+
+	const {color, type, size, block, icon, loading, space, className, ...others} = props;
+	const {disabled} = props;
+
+	if (className) {
+		classNames.push(className);
+	}
+
+	return (<div className={classNames.join(' ')} {...others}>{props.children}</div>);
 }

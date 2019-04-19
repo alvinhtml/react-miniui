@@ -1,0 +1,50 @@
+@import "./miniui.scss";
+
+// Badge
+
+// Color
+@mixin badge-style ($name, $color) {
+	&.#{$name} {
+		background-color: $color;
+	}
+}
+
+
+.badge {
+	display: inline-block;
+	padding: .25em .4em;
+	height: 1em;
+	min-width: .7015em;
+	color: $white;
+ 	background-color: $gray;
+	border-radius: 0.25rem;
+	font-size: 75%;
+	line-height: 1;
+	font-weight: normal;
+	font-style: normal;
+	text-align: center;
+	vertical-align: baseline;
+	font-family: inherit;
+	transition: background-color 0.25s ease, color 0.25s ease;
+
+	// Shape
+	&.circle {
+		border-radius: 1.28571429em;
+		padding-left: 0;
+		padding-right: 0;
+		min-width: 2.57142857em;
+		&.mini {
+			border-radius: 50%;
+			height: 0.83333333em;
+		}
+	}
+
+	@each $name, $color in $color-list {
+		@include badge-style($name, $color);
+	}
+
+	&.white {
+		color: $dark;
+	}
+
+}
