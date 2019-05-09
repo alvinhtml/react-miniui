@@ -1,0 +1,151 @@
+@import "./miniui.scss";
+
+// Dropdown
+.dropdown {
+  position: relative;
+  display: inline-block;
+
+  .dropdown-toggler {
+    cursor: pointer;
+    vertical-align: top;
+  }
+
+  .dropdown-main {
+    position: absolute;
+    z-index: 99;
+    min-width: 100%;
+    top: 100%;
+    left: 0;
+    font-size: 14px;
+
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    transform-origin: 0 0;
+    opacity: .5;
+    transform: scale(1, 0);
+  	transition: opacity 0.2s ease 0s, transform 0.2s ease 0s;
+
+    &.visible {
+      opacity: 1;
+      transform: scale(1, 1);
+      transition: opacity 0.2s ease 0s, transform 0.2s ease 0s;
+    }
+
+    &.transitioning {
+      display: block;
+    }
+  }
+
+  .dropdown-header {
+    background-color: #fff;
+    border: 1px solid rgba(34,36,38,.15);
+    border-radius: 0.25em;
+    height: 2.57142857em;
+  	line-height: 2.57142857em;
+    box-sizing: border-box;
+    padding: 0 1em;
+
+    & > i {
+      margin-left: 0.5em;
+    }
+  }
+}
+
+// menu
+.menu {
+	background-color: #fff;
+  border: 1px solid rgba(34,36,38,.15);
+  border-radius: 0.25em;
+  box-shadow: 0 2px 3px 0 rgba(34,36,38,.15);
+  margin-top: 0.42857143em;
+
+  .item, a.item {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-weight: 300;
+  	color: $text-color;
+    line-height: 2.57142857em;
+  	white-space: nowrap;
+  	text-align: left;
+    padding: 0 1.14285714rem;
+    text-decoration: none;
+
+
+    &:hover {
+  		background-color: #f2f2f2;
+
+      & > .menu {
+        display: block;
+      }
+  	}
+
+    &:active {
+  		background-color: rgba(0,0,0,.06);
+  	}
+
+  	&.divider {
+  		background-color: #646b89;
+  		height: 1px;
+  		margin: 9px 0;
+  	}
+
+    & > i {
+      margin-left: 0;
+      float: none;
+      margin-right: 0.78571429em;
+    }
+
+    span.arrow-right {
+      float: right;
+      margin: 0 -1em 0 1em;
+    }
+
+    span.description {
+      float: right;
+      margin: 0 0 0 1em;
+      color: rgba(0,0,0,.4);
+    }
+
+    .badge {
+    	float: right;
+    	margin: 9px 0 0 0.5em;
+    }
+
+    .menu {
+      display: none;
+      position: absolute;
+      margin-left: -0.42857143em;
+      left: 100%;
+      top: 0;
+    }
+  }
+
+  &.drop-arrow {
+    margin-top: 0.57142857em;
+
+    &::before {
+      border-bottom: 8px solid rgba(34,36,38,.15);
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+        content: '';
+        display: inline-block;
+        left: 14px;
+        position: absolute;
+        right: auto;
+        top: 1px;
+    }
+
+    &::after {
+      border-bottom: 7px solid #fff;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        content: '';
+        display: inline-block;
+        left: 15px;
+        position: absolute;
+        right: auto;
+        top: 2px;
+    }
+  }
+}

@@ -6,7 +6,7 @@
 	cursor: pointer;
 	display: inline-block;
 	padding: 0 1.28571429em;
-	margin: 0 0.25em 0 0;
+	margin: 0 0.42857143em 0 0;
 	height: 2.57142857em;
 	min-height: 1em;
 	line-height: 2.57142857em;
@@ -20,7 +20,7 @@
 	font-weight: normal;
 	font-style: normal;
 	text-align: center;
-	vertical-align: baseline;
+	vertical-align: middle;
 	text-decoration: none;
 	font-family: Lato, "Helvetica Neue", Helvetica, 'Microsoft YaHei' Arial, "\5b8b\4f53", sans-serif;
 	box-sizing: border-box;
@@ -235,6 +235,7 @@ input[type="submit"]::-moz-focus-inner {
 		&:not(:first-child):not(:last-child) {
 			border-radius: 0;
 			border-right: 0;
+			border-left: 0;
 		}
 		&:first-child:not(:last-child) {
 			border-top-right-radius: 0;

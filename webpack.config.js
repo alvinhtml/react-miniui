@@ -138,6 +138,7 @@ module.exports = {
     // },
 
     devServer: {
+        // host: '0.0.0.0',
         port: 8080,
         progress: true, //进度条
         contentBase: './dist', //配置目录

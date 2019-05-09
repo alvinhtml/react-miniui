@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { Row, Col, Input, Textarea, Icon } from '../index';
+import { Row, Col, Input, Textarea, Icon, FormGroup, Button, Select, Option} from '../index';
 
 export default class ButtonPage extends Component {
 
@@ -51,6 +51,26 @@ export default class ButtonPage extends Component {
         <h2>Disabled</h2>
         <Row>
           <Col span="6"><Input block="true" type="text" disabled col="col-span6" placeholder="disabled" defaultValue="disabled input" /></Col>
+        </Row>
+        <h2>Form Group</h2>
+        <Row>
+          <Col span="6">
+            <FormGroup>
+              <Button color="grey">http://</Button>
+              <Input type="text" />
+              <Select>
+                <Option value=".com">.com</Option>
+    						<Option value=".org">.org</Option>
+    						<Option value=".net">.net</Option>
+              </Select>
+            </FormGroup>
+          </Col>
+          <Col span="6">
+            <FormGroup>
+              <Input type="text" />
+              <Button color="blue">Search</Button>
+            </FormGroup>
+          </Col>
         </Row>
         <h2>文本框</h2>
         <Row>

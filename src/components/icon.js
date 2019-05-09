@@ -3,6 +3,7 @@
 import React, { Component } from 'react';
 
 import "../../node_modules/simple-line-icons/css/simple-line-icons.css";
+import "../scss/icon.scss";
 
 type Props = {
 	icon: string;

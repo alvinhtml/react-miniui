@@ -17,7 +17,8 @@ input[type="tel"] {
 	border: 1px solid #eee;
 	outline: none;
 	color: #838fa1;
-	border-radius: 0.14285714em;
+	border-radius: 0.25em;
+	vertical-align: middle;
 	font-family: 'Microsoft YaHei', Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
 	transition: background-color 0.3s ease-out, box-shadow 0.2s ease, border-color 0.2s ease;
 	-webkit-box-shadow: 0em 0em 0em 0em rgba(0, 0, 0, 0.3) inset;
@@ -196,4 +197,67 @@ span.add-on {
 	line-height: 2.57142857em;
 	top: 1px;
 	color: rgba(0,0,0,0.4);
+}
+
+// group
+.form-group {
+	display: inline-block;
+	margin: 0 0.25em 0 0;
+
+	&>.input {
+		margin: 0 auto !important;
+
+		&:not(:first-child):not(:last-child) {
+			border-radius: 0;
+		}
+		&:first-child:not(:last-child) {
+			border-top-right-radius: 0;
+	    border-bottom-right-radius: 0;
+		}
+		&:last-child:not(:first-child) {
+			border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+		}
+	}
+
+	&>.button {
+		margin: 0 auto !important;
+
+		&:not(:first-child):not(:last-child) {
+			border-radius: 0;
+			border-right: 0;
+			border-left: 0;
+		}
+		&:first-child:not(:last-child) {
+			border-top-right-radius: 0;
+	    border-bottom-right-radius: 0;
+			border-right: 0;
+		}
+		&:last-child:not(:first-child) {
+			border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+			border-left: 0;
+		}
+	}
+
+	&>.dropdown {
+		margin: 0 auto !important;
+		vertical-align: middle;
+
+		&:not(:first-child):not(:last-child) .dropdown-header {
+			border-radius: 0;
+			border-right: 0;
+			border-left: 0;
+		}
+		&:first-child:not(:last-child) .dropdown-header {
+			border-top-right-radius: 0;
+	    border-bottom-right-radius: 0;
+			border-right: 0;
+		}
+		&:last-child:not(:first-child) .dropdown-header {
+			border-top-left-radius: 0;
+	    border-bottom-left-radius: 0;
+			border-left: 0;
+		}
+	}
 }

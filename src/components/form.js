@@ -101,3 +101,20 @@ export const Textarea = (props: TextareaProps) => {
 
 	return (<textarea className={classNames.join(' ')} {...others} />);
 }
+
+
+type groupProps = {
+	className: string;
+}
+
+export const FormGroup = (props: groupProps) => {
+	const classNames = ['form-group'];
+
+	const {className, ...others} = props;
+
+	if (className) {
+		classNames.push(className);
+	}
+
+	return (<div className={classNames.join(' ')} {...others}>{props.children}</div>);
+}

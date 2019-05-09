@@ -5,6 +5,7 @@
     "main": "index.js",
     "scripts": {
         "dev": "webpack-dev-server",
+        "start": "webpack-dev-server",
         "lint": "npx eslint src/**/*.js src/**/*.jsx",
         "build": "webpack --mode=production",
         "manual:prepare": "gitbook install manual",

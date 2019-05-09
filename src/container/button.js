@@ -50,7 +50,7 @@ export default class ButtonPage extends Component {
         <div className="row">
           {size.map((v, i) => <Button key={v} size={v} color={colors[i]}>{v}</Button>)}
         </div>
-        <h3>With icon</h3>
+        <h3>With icon </h3>
         <div className="row">
           {size.map((v, i) => <Button key={v} icon={`icon-${icons[i]}`} size={v} color={colors[i]}>{v}</Button>)}
         </div>
