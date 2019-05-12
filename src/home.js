@@ -89,7 +89,8 @@ class SlideBar extends Component {
           <li>
             <ul>
               <li><Link to="/dropdown"><span>Dropdown</span><span className="comment">下载菜单</span></Link></li>
-              <li><Link to="/"><span>Dropdown</span><span className="comment">下载菜单</span></Link></li>
+              <li><Link to="/"><span>Overlay</span><span className="comment">弹出浮层</span></Link></li>
+              <li><Link to="/"><span>Modal</span><span className="comment">弹出窗口</span></Link></li>
             </ul>
           </li>
         </ul>

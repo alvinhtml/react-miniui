@@ -49,7 +49,6 @@ export class Dropdown extends Component <Props> {
 
 	//document 点击事件，关闭 dromdown
 	mouseupCallback(e) {
-		console.log("document mouseup");
 		this.hide();
 	}
 
@@ -82,15 +81,12 @@ export class Dropdown extends Component <Props> {
 
 	//阻止 dropdown 鼠标 onMouseUp 事件冒泡
 	mouseupEvent(event) {
-		console.log("mouseup stopPropagation");
 		event.nativeEvent.stopImmediatePropagation();
 		event.stopPropagation();
 	}
 
 	selectEvent(e) {
 		let target = e.target;
-
-		console.log("target", target);
 
 		while(!target.matches('.item')) {
 			if (target === e.currentTarget) {
@@ -100,8 +96,6 @@ export class Dropdown extends Component <Props> {
 		}
 
 		this.hide();
-
-		console.log("target.getAttribute('value')", target.getAttribute('value'));
 
 		let value = target.getAttribute('value');
 		let text = target.textContent;
@@ -147,8 +141,6 @@ export class Dropdown extends Component <Props> {
 			childrenMenu = childrenToggler.pop();
 		}
 
-		console.log("value, text", value, text);
-
 		return (
 			<div className={classNames.join(' ')} onMouseUp={this.mouseupEvent}>
 				<input type="hidden" name={this.props.name} value={value} />
@@ -163,23 +155,50 @@ export class Dropdown extends Component <Props> {
 	}
 }
 
+export class Menu extends Component <Props> {
+	constructor(props) {
+		super(props)
 
-
-export const Menu = (props) => {
-	const classNames = ['menu'];
-	const {className, dropArrow, ...others} = props;
-
-	if (className) {
-		classNames.push(className);
+		this.state = {
+			searchValue: ''
+		}
 	}
 
-	if (dropArrow) {
-		classNames.push('drop-arrow');
+	handleChange(event: any) {
+		const searchValue = event.target.value;
+		this.setState({
+			searchValue
+		});
 	}
 
-	return (
-		<div className={classNames.join(' ')}>{props.children}</div>
-	)
+	render() {
+		const classNames = ['menu'];
+		const {className, dropArrow, search, children, ...others} = this.props;
+
+		if (className) {
+			classNames.push(className);
+		}
+
+		if (dropArrow) {
+			classNames.push('drop-arrow');
+		}
+
+		const searchRegExp = new RegExp(this.state.searchValue);
+
+		return (
+			<div className={classNames.join(' ')} {...others}>
+				{search && (
+					<div className="dropdown-search">
+						<label className="input-append input-block">
+							<input className="input" type="text" onChange={this.handleChange.bind(this)} value={this.state.searchValue} placeholder="serach" />
+							<span className="add-on"><i className="fa-search" /></span>
+						</label>
+					</div>
+				)}
+				{search ? children.filter(v => searchRegExp.test(v.props.value)) : children}
+			</div>
+		)
+	}
 }
 
 export const Item = (props) => {
@@ -210,10 +229,10 @@ export class Select extends Dropdown {
 	}
 
 	render() {
-
+		const {search, ...others} = this.props;
 		return (
-			<Dropdown isSelect={true} {...this.props}>
-				<Menu>
+			<Dropdown isSelect={true} {...others}>
+				<Menu search={search||false}>
 					{this.props.children}
 				</Menu>
 			</Dropdown>

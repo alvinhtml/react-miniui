@@ -47,7 +47,7 @@ export default class DropdownPage extends Component {
 				</Row>
 				<h2>Dropdown Button</h2>
 				<Row>
-					<Col span="12">
+					<Col span="2">
 						<Dropdown name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
 							<Button color="blue">请选择 <Icon icon="fa-down-dir" /></Button>
 							<Menu>
@@ -57,6 +57,8 @@ export default class DropdownPage extends Component {
 								<Item value="windows phone">windows phone</Item>
 							</Menu>
 						</Dropdown>
+					</Col>
+					<Col span="2">
 						<Dropdown name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
 							<Button color="red">请选择 <Icon icon="fa-down-dir" /></Button>
 							<Menu>
@@ -66,6 +68,8 @@ export default class DropdownPage extends Component {
 								<Item href="#" value="windows phone">windows phone</Item>
 							</Menu>
 						</Dropdown>
+					</Col>
+					<Col span="2">
 						<Dropdown name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
 							<Button color="green">请选择 <Icon icon="fa-down-dir" /></Button>
 							<Menu dropArrow={true}>
@@ -79,12 +83,23 @@ export default class DropdownPage extends Component {
 				</Row>
 				<h2>Dropdown Select</h2>
         <Row>
-					<Select name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
-						<Option value="iphone">iphone</Option>
-						<Option value="ipad">ipad</Option>
-						<Option value="Macbook Pro">Macbook Pro</Option>
-						<Option value="windows phone">windows phone</Option>
-					</Select>
+					<Col span="2">
+						<Select name="phone" value="iphone" onChange={this.handleChange.bind(this)}>
+							<Option value="iphone">iphone</Option>
+							<Option value="ipad">ipad</Option>
+							<Option value="Macbook Pro">Macbook Pro</Option>
+							<Option value="windows phone">windows phone</Option>
+						</Select>
+					</Col>
+
+					<Col span="2">
+						<Select name="phone" value="iphone" search={true} onChange={this.handleChange.bind(this)}>
+							<Option value="iphone">iphone</Option>
+							<Option value="ipad">ipad</Option>
+							<Option value="Macbook Pro">Macbook Pro</Option>
+							<Option value="windows phone">windows phone</Option>
+						</Select>
+					</Col>
 				</Row>
 				<Row style={{height: "600px"}} />
       </div>

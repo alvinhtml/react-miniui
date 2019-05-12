@@ -59,6 +59,12 @@
   box-shadow: 0 2px 3px 0 rgba(34,36,38,.15);
   margin-top: 0.42857143em;
 
+  .dropdown-search {
+    display: block;
+    padding: 0.78571429em 1.14285714rem;
+    min-width: 12em;
+  }
+
   .item, a.item {
     display: block;
     position: relative;
