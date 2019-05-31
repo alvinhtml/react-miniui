@@ -1,6 +1,6 @@
 {
     "name": "react-miniui",
-    "version": "1.1.0",
+    "version": "1.1.1",
     "description": "A mini react UI library",
     "main": "dist/index.js",
     "scripts": {
@@ -14,14 +14,14 @@
         "url": "git+https://github.com/alvinhtml/react-miniui.git"
     },
     "keywords": [
-      "ui",
-      "button",
-      "Column",
-      "dropdown",
-      "select",
-      "components",
-      "menu",
-      "form"
+        "ui",
+        "button",
+        "Column",
+        "dropdown",
+        "select",
+        "components",
+        "menu",
+        "form"
     ],
     "author": "alvinhtml@gmail.com",
     "license": "MIT",
