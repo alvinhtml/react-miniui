@@ -114,7 +114,7 @@ module.exports = {
 
     plugins: [ //数组，放着所有 webpack 插件
         new MiniCssExtractPlugin({
-            filename: 'css/[name].min.css'
+            filename: 'miniui.css'
         }),
     ],
 

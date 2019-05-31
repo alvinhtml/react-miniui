@@ -13,6 +13,16 @@
         "type": "git",
         "url": "git+https://github.com/alvinhtml/react-miniui.git"
     },
+    "keywords": [
+      "ui",
+      "button",
+      "Column",
+      "dropdown",
+      "select",
+      "components",
+      "menu",
+      "form"
+    ],
     "author": "alvinhtml@gmail.com",
     "license": "MIT",
     "devDependencies": {
