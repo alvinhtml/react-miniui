@@ -118,12 +118,12 @@ module.exports = {
         }),
     ],
 
-    // watch: true,
-    // watchOptions: {
-    //     poll: 2000,
-    //     aggregateTimeout: 2000,
-    //     ignored: /node_modules|vendor|build|public|resources/
-    // },
+    watch: true,
+    watchOptions: {
+        poll: 2000,
+        aggregateTimeout: 2000,
+        ignored: /node_modules|vendor|build|public|resources/
+    },
 
     devServer: {
         port: 8080,

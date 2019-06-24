@@ -4,3 +4,4 @@ export {Icon} from './components/icon';
 export {Badge} from './components/badge';
 export {Row, Flex, Col} from './components/column';
 export {Dropdown, Menu, Item, Select, Option} from './components/dropdown';
+export {OverlayTrigger, Popovers, Tooltip} from './components/overlay';
