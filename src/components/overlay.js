@@ -1,71 +1,62 @@
 /* @flow */
 
-import React, { Component, cloneElement } from 'react';
+import React, { Component, cloneElement} from 'react';
 import ReactDOM from 'react-dom';
 import '../scss/overlay.scss';
-
-
-class RefHolder extends Component {
-  render() {
-    return this.props.children;
-  }
-}
 
 type Props = {
 	title: string;
 	content: any;
 	position: string;
+	trigger: string;
+  children: any;
+  overlay: any;
 }
 
 type State = {
 	isVisible: boolean;
-	style: Object;
-	classNames: Array;
+	classNames: Array<string>;
 }
 
 export class OverlayTrigger extends Component<Props, State> {
+  trigger: {current: null | HTMLElement}
+  overlayer: {current: null | HTMLDivElement}
 
-	constructor(props) {
-		super(props);
-
-		this.trigger = React.createRef();
-		this.overlayer = React.createRef();
+	constructor() {
+		super();
 
 		this.state = {
 			isVisible: false,
-			style: {},
 			classNames: []
 		};
+
+    this.trigger = React.createRef();
+    this.overlayer = React.createRef();
 	}
 
 	// 获取元素离窗口上边的距离
-	getOffsetTop(elements: Object){
-	    let top = elements.offsetTop;
-	    let parent = elements.offsetParent;
-	    while( parent != null ){
-	        top += parent.offsetTop;
-	        parent = parent.offsetParent;
-	    };
-	    return top;
-	};
+	getOffsetTop(elements: Object) {
+    let top = elements.offsetTop;
+    let parent = elements.offsetParent;
+    while ( parent != null ) {
+      top += parent.offsetTop;
+      parent = parent.offsetParent;
+    }
+    return top;
+	}
 
 	// 获取元素离窗口左边的距离
-	getOffsetLeft(elements: Object ){
-	    let left = elements.offsetLeft;
-	    let parent = elements.offsetParent;
-	    while( parent != null ){
-	        left += parent.offsetLeft;
-	        parent = parent.offsetParent;
-	    };
-	    return left;
-	};
+	getOffsetLeft(elements: Object ) {
+    let left = elements.offsetLeft;
+    let parent = elements.offsetParent;
+    while ( parent != null ) {
+      left += parent.offsetLeft;
+      parent = parent.offsetParent;
+    }
+    return left;
+	}
 
-	getTrigger = () => ReactDOM.findDOMNode(this.trigger.current);
-
-	getOverlayer = () => ReactDOM.findDOMNode(this.overlayer.current);
-
-
-	handleMouseOver(event: any) {
+	handleMouseOver() {
 		this.setState({
 			isVisible: true
 		}, () => {
@@ -73,16 +64,40 @@ export class OverlayTrigger extends Component<Props, State> {
 		});
 	}
 
+	handleMouseOut() {
+		this.setState({
+			isVisible: false
+		});
+	}
+
+	handleClick() {
+		this.state.isVisible
+
+		?	this.setState({
+			isVisible: false
+		})
+
+		: this.setState({
+			isVisible: true
+		}, () => {
+			this.show();
+		});
+	}
+
+  getScrollTop = () => {
+    return document.documentElement ? document.documentElement.scrollTop : 0;
+  }
+
 	// 计算 trigger 的宽高和位置
-	getTriggerAttr = (trigger) => ({
+	getTriggerAttr = (trigger: HTMLElement) => ({
 		width: trigger.offsetWidth,
 		height: trigger.offsetHeight,
-		offsetTop: this.getOffsetTop(trigger) - document.documentElement.scrollTop,
+		offsetTop: this.getOffsetTop(trigger) - this.getScrollTop(),
 		offsetLeft: this.getOffsetLeft(trigger)
 	});
 
 	// 计算 overlayer 的宽高和位置
-	getOverlayerAttr = (overlayer) => ({
+	getOverlayerAttr = (overlayer: HTMLElement) => ({
 		width: overlayer.offsetWidth,
 		height: overlayer.offsetHeight,
 		offsetTop: this.getOffsetTop(overlayer),
@@ -91,21 +106,19 @@ export class OverlayTrigger extends Component<Props, State> {
 
 	// 计算屏幕区域
 	getScreenArea = () => ({
-		scrollTop: document.documentElement.scrollTop,
+		scrollTop: this.getScrollTop(),
 		height: window.screen.availHeight,
 		width: window.screen.availWidth
 	});
 
 	// 获取 overlayer 弹出的方向
-	getDirection = (triggerAttr, overlayerAttr, screenArea) => {
+	getDirection = (triggerAttr: Object, overlayerAttr: Object, screenArea: Object) => {
 		const {position} = this.props;
 
 		//如果参数设置了位置，直接使用参数
 		if (position) {
 			return position;
 		}
-
-		console.log("triggerAttr", triggerAttr, overlayerAttr, screenArea);
 
 		// 计算当前视窗的边界能否容下弹出框的大小
 		const containment = {
@@ -140,133 +153,131 @@ export class OverlayTrigger extends Component<Props, State> {
 	}
 
 	// 计算 overlayer 的坐标
-	getPosition = () => {
-		const triggerAttr = this.getTriggerAttr(this.getTrigger());
-		const overlayerAttr = this.getOverlayerAttr(this.getOverlayer());
-		const screenArea  = this.getScreenArea();
-		const direction = this.getDirection(triggerAttr, overlayerAttr, screenArea);
+	getPosition = () :{
+    direction: string,
+    top: number,
+    left: number
+  } => {
+    const trigger = this.trigger.current;
+    const overlayer = this.overlayer.current;
 
+    if (trigger instanceof HTMLElement && overlayer instanceof HTMLDivElement) {
+			const triggerAttr = this.getTriggerAttr(trigger);
+			const overlayerAttr = this.getOverlayerAttr(overlayer);
+			const screenArea  = this.getScreenArea();
+			const direction = this.getDirection(triggerAttr, overlayerAttr, screenArea);
 
-
-		console.log("triggerAttr", triggerAttr, overlayerAttr, screenArea);
-
-		//基于方位计算坐标 (left, top)
-		switch (direction) {
-			case "top":
-				return {
-					direction,
-				  top    : triggerAttr.offsetTop - ( overlayerAttr.height + 8 ),
-				  left   : triggerAttr.offsetLeft + triggerAttr.width / 2 - overlayerAttr.width / 2
-				};
-			case "bottom":
-				return {
-					direction,
-				  top    : triggerAttr.offsetTop + triggerAttr.height + 8,
-				  left   : triggerAttr.offsetLeft + triggerAttr.width / 2 - overlayerAttr.width / 2
-				};
-			case "right":
-				return {
-					direction,
-				  top    : triggerAttr.offsetTop + triggerAttr.height / 2 - overlayerAttr.height / 2,
-				  left   : triggerAttr.offsetLeft + triggerAttr.width + 8
-				};
-			case "left":
-				return {
-					direction,
-				  top    : triggerAttr.offsetTop + triggerAttr.height / 2 - overlayerAttr.height / 2 - 2,
-				  left   : triggerAttr.offsetLeft - overlayerAttr.width - 8
-				};
-		}
-
+			//基于方位计算坐标 (left, top)
+			switch (direction) {
+				case "top":
+					return {
+						direction,
+						top: triggerAttr.offsetTop - ( overlayerAttr.height + 8 ),
+						left: triggerAttr.offsetLeft + triggerAttr.width / 2 - overlayerAttr.width / 2
+					};
+				case "bottom":
+					return {
+						direction,
+						top: triggerAttr.offsetTop + triggerAttr.height + 8,
+						left: triggerAttr.offsetLeft + triggerAttr.width / 2 - overlayerAttr.width / 2
+					};
+				case "right":
+					return {
+						direction,
+						top: triggerAttr.offsetTop + triggerAttr.height / 2 - overlayerAttr.height / 2,
+						left: triggerAttr.offsetLeft + triggerAttr.width + 8
+					};
+				case "left":
+					return {
+						direction,
+						top: triggerAttr.offsetTop + triggerAttr.height / 2 - overlayerAttr.height / 2 - 2,
+						left: triggerAttr.offsetLeft - overlayerAttr.width - 8
+					};
+			}
+    }
+    return {
+      direction: 'top',
+      top: 0,
+      left: 0
+    }
 	}
 
 	show() {
-		const {title, overlay} = this.props;
-		const overlayer = this.getOverlayer();
-
-		console.log("overlay", this.getTrigger());
-		console.log("overlay", this.getOverlayer());
-
+		const overlayer = this.overlayer.current;
 		const position = this.getPosition();
 
-		overlayer.style.top = `${position.top}px`;
-		overlayer.style.left = `${position.left}px`;
-
-		overlayer.classList.add(position.direction);
-		overlayer.classList.add('visible');
+    if (overlayer instanceof HTMLElement) {
+			overlayer.style.top = `${position.top}px`;
+			overlayer.style.left = `${position.left}px`;
+			overlayer.classList.add(position.direction);
+			overlayer.classList.add('visible');
+    }
 	}
-
-	handleMouseOut() {
-		this.setState({
-			isVisible: false
-		});
-	}
-
 
 
 	render() {
 
-		const {title, children, overlay} = this.props;
-		const {isVisible, style} = this.state;
+		const {children, overlay, trigger} = this.props;
+		const {isVisible} = this.state;
 		const child = React.Children.only(children);
-
-		console.log("isVisible", isVisible, style);
 
 		return (
 			<>
-				<RefHolder ref={this.trigger}>
-					{cloneElement(child, {
-						onMouseOver: this.handleMouseOver.bind(this),
-						onMouseOut: this.handleMouseOut.bind(this)
-					})}
-				</RefHolder>
-				<RefHolder ref={this.overlayer}>
-					{isVisible && overlay}
-				</RefHolder>
+        {trigger === 'click'
+          ? cloneElement(child, {
+            ref: this.trigger,
+            onClick: this.handleClick.bind(this)
+          })
+          : cloneElement(child, {
+            ref: this.trigger,
+            onMouseOver: this.handleMouseOver.bind(this),
+            onMouseOut: this.handleMouseOut.bind(this)
+          })
+        }
+
+        {isVisible && cloneElement(overlay, {
+          ref: this.overlayer
+        })}
 			</>
 		);
 	}
 }
 
+type PPops = {
+	title: string;
+	color: string;
+	className: string;
+	children: any;
+}
 
-export class Popovers extends Component<{
-	title: string,
-	className: string,
-	style: Object
-}> {
-	render() {
+export const Popovers = React.forwardRef<PPops, HTMLDivElement>(
+	function ComponentPopovers(props: PPops, ref) {
 		const classNames = ['popovers'];
-		const {className, children, ...others} = this.props;
+		const {className, color, title, children, ...others} = props;
 
 		if (className) {
 			classNames.push(className);
 		}
 
-		return ReactDOM.createPortal(
-			<div className={classNames.join(' ')} {...others}>{children}</div>,
-			document.body
-		);
-	}
-}
-
-export class Tooltip extends Component<{
-	title: string,
-	className: string
-}> {
-	render() {
-		const classNames = ['tooltip'];
-		const {className, title, children, ...others} = this.props;
-
-		if (className) {
-			classNames.push(className);
+		if (color) {
+			classNames.push(`pop-${color}`);
 		}
 
-		return ReactDOM.createPortal(
-			<div className={classNames.join(' ')} {...others}>
-				{title && <h4>{title}</h4>}
-				{children}
-			</div>,
-			document.body
-		);
+		const popover = (
+			<div className={classNames.join(' ')} {...others} ref={ref}>
+			{title && <h3 className="pop-title">{title}</h3>}
+			{children}
+			</div>
+		)
+
+		const root: ?HTMLBodyElement = document.body;
+		if (root instanceof HTMLBodyElement) {
+			return ReactDOM.createPortal(
+				popover,
+				root
+			);
+		}
+		return popover;
 	}
-}
+);
+export {Popovers as Tooltip};

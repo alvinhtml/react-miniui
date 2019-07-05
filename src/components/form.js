@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import * as React from 'react';
 
 import '../scss/form.scss';
 
@@ -11,11 +11,11 @@ type Props = {
 	size: string;
 	htmlType: string;
 	disabled: bool;
-	onChange: Funcion;
+	onChange: Function;
 	value: string;
 	defaultValue: string;
-	addonBefore: mixed;
-	addonAfter: mixed;
+	addonBefore: React.Node;
+	addonAfter: React.Node;
 	className: string;
 
 }
@@ -79,10 +79,12 @@ export const Input = (props: Props) => {
 type TextareaProps = {
 	className: string;
 	block: bool;
+	color: string;
+	disabled: bool;
+	children: string;
 }
 export const Textarea = (props: TextareaProps) => {
 	const classNames = ['textarea'];
-	const LabelClassName = [];
 
 	const {color, block, ...others} = props;
 	const {disabled} = props;
@@ -105,6 +107,7 @@ export const Textarea = (props: TextareaProps) => {
 
 type groupProps = {
 	className: string;
+	children: any;
 }
 
 export const FormGroup = (props: groupProps) => {

@@ -194,6 +194,10 @@ input[type="submit"]::-moz-focus-inner {
 @each $name, $color in $color-list {
 	@include button-style($name, $color);
 }
+.button.white {
+	border: 1px solid $gray;
+	color: $text-color;
+}
 
 
 // style

@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, {Component} from 'react';
+import * as React from 'react';
 
 import '../scss/dropdown.scss';
 
@@ -8,11 +8,15 @@ import {Icon} from './icon';
 
 
 type Props = {
-	onChange: Funcion;
-	className: string;
-	color: string;
-	placeholder: string;
-	isSelect: bool;
+	value: string;
+	text: string;
+	onChange?: Function;
+	className?: string;
+	dropArrow?: bool,
+	placeholder?: string;
+	isSelect?: bool;
+	name: string;
+	children?: React.Node;
 }
 
 
@@ -20,40 +24,40 @@ type Props = {
  * 下拉菜单对象基类，所有下单菜单组件继承此类
  * @type {Object}
  */
-export class Dropdown extends Component <Props> {
-	constructor(props) {
-		super(props)
+export class Dropdown extends React.Component <Props, {
+		value: string,
+		opend: bool,
+		text: string
+}> {
+	// mainRef: ?HTMLDivElement;
+
+	constructor() {
+		super()
 
 		this.state = {
-			value: 0,
+			value: '',
 			opend: false,
 			text: '请选择',
 		}
 
-
-		//ES6 类中函数必须手动绑定
-		this.mouseupCallback = this.mouseupCallback.bind(this);
-		this.handleClick = this.handleClick.bind(this);
-		this.show = this.show.bind(this);
-		this.hide = this.hide.bind(this);
-		this.selectEvent = this.selectEvent.bind(this);
-		this.refCallback = this.refCallback.bind(this);
+		// this.mainRef = React.createRef();
 	}
 
 	componentWillMount() {
+		const {value, text} = this.props;
 		this.setState({
-			value: this.props.value ? this.props.value : 0,
-			text: this.props.text ? this.props.text : '请选择'
-		})
+			value: (typeof value === 'undefined') ? '' : value,
+			text: (typeof text === 'undefined') ? '请选择' : text
+		});
 	}
 
 	//document 点击事件，关闭 dromdown
-	mouseupCallback(e) {
+	mouseupCallback() {
 		this.hide();
 	}
 
 	//展开或关闭 dropdown
-	handleClick(event) {
+	handleClick() {
 		this.state.opend ? this.hide() : this.show();
 	}
 
@@ -75,43 +79,43 @@ export class Dropdown extends Component <Props> {
 		});
 	}
 
-	refCallback(instance) {
-		this.instance = instance
-	}
-
 	//阻止 dropdown 鼠标 onMouseUp 事件冒泡
-	mouseupEvent(event) {
+	mouseupEvent(event: SyntheticEvent<HTMLElement>) {
 		event.nativeEvent.stopImmediatePropagation();
 		event.stopPropagation();
 	}
 
-	selectEvent(e) {
-		let target = e.target;
+	selectEvent(e: SyntheticEvent<HTMLElement>) {
+		const target = e.target;
 
-		while(!target.matches('.item')) {
-			if (target === e.currentTarget) {
-				return false;
+		if (target instanceof HTMLElement) {
+			let targetEvery = target;
+
+			while (!targetEvery.matches || !targetEvery.matches('.item')) {
+				if (targetEvery === e.currentTarget) {
+					return false;
+				}
+				if (targetEvery.parentNode) {
+					targetEvery = targetEvery.parentNode;
+				} else {
+					return false;
+				}
 			}
-			target = target.parentNode;
+
+			if (targetEvery && targetEvery instanceof HTMLElement) {
+				const value = targetEvery.getAttribute('data-value') || '';
+				const text = targetEvery.innerText;
+
+				this.setState({
+					value,
+					text
+				});
+			}
 		}
-
-		this.hide();
-
-		let value = target.getAttribute('value');
-		let text = target.textContent;
-
-		this.setState({
-			value: value ? value : 0,
-			text: text ? text : '请选择'
-		})
-
-		//下拉菜单 onchonge 事件
-		this.props.onChange && this.props.onChange(value, text);
-
 	}
 
 	render() {
-		const {className, placeholder, children, isSelect} = this.props;
+		const {className, children, isSelect} = this.props;
 		const {opend, value, text} = this.state;
 
 		const classNames = ['dropdown'];
@@ -123,8 +127,6 @@ export class Dropdown extends Component <Props> {
 		if (isSelect) {
 			classNames.push('dropdown-select');
 		}
-
-
 
 		let childrenToggler = isSelect
 			?	(
@@ -142,12 +144,12 @@ export class Dropdown extends Component <Props> {
 		}
 
 		return (
-			<div className={classNames.join(' ')} onMouseUp={this.mouseupEvent}>
+			<div className={classNames.join(' ')} onMouseUp={this.mouseupEvent.bind(this)}>
 				<input type="hidden" name={this.props.name} value={value} />
-				<div className="dropdown-toggler" onClick={this.handleClick}>
+				<div className="dropdown-toggler" onClick={this.handleClick.bind(this)}>
 					{childrenToggler}
 				</div>
-				<div className={`dropdown-main ${opend ? 'visible' : ''}`} onClick={this.selectEvent} ref={this.refCallback}>
+				<div className={`dropdown-main ${opend ? 'visible' : ''}`} onClick={this.selectEvent.bind(this)}>
 					{childrenMenu}
 				</div>
 			</div>
@@ -155,9 +157,16 @@ export class Dropdown extends Component <Props> {
 	}
 }
 
-export class Menu extends Component <Props> {
-	constructor(props) {
-		super(props)
+export class Menu extends React.Component <{
+	className?: string,
+	dropArrow?: bool,
+	search?: bool,
+	children: React.ChildrenArray<React.Element<typeof Option>>
+}, {
+	searchValue: string
+}> {
+	constructor() {
+		super()
 
 		this.state = {
 			searchValue: ''
@@ -173,7 +182,8 @@ export class Menu extends Component <Props> {
 
 	render() {
 		const classNames = ['menu'];
-		const {className, dropArrow, search, children, ...others} = this.props;
+		const {className, dropArrow, search} = this.props;
+		const children = React.Children.toArray(this.props.children);
 
 		if (className) {
 			classNames.push(className);
@@ -186,7 +196,7 @@ export class Menu extends Component <Props> {
 		const searchRegExp = new RegExp(this.state.searchValue);
 
 		return (
-			<div className={classNames.join(' ')} {...others}>
+			<div className={classNames.join(' ')}>
 				{search && (
 					<div className="dropdown-search">
 						<label className="input-append input-block">
@@ -201,7 +211,12 @@ export class Menu extends Component <Props> {
 	}
 }
 
-export const Item = (props) => {
+export const Item = (props: {
+	className?: string,
+	disabled?: bool,
+	children: React.Node,
+	href?: string,
+}) => {
 	const classNames = ['item'];
 	const {className, disabled, ...others} = props;
 
@@ -220,19 +235,44 @@ export const Item = (props) => {
 	}
 }
 
-export const Option = Item;
+export class Option extends React.Component<{
+	className?: string,
+	disabled?: bool,
+	children: React.Node,
+	value: string
+}> {
+	render() {
+		const classNames = ['item'];
+		const {className, disabled, value, ...others} = this.props;
+
+		if (className) {
+			classNames.push(className);
+		}
+
+		if (disabled) {
+			classNames.push('disabled');
+		}
+		return <div className={classNames.join(' ')} data-value={value} {...others}>{this.props.children}</div>
+	}
+}
 
 
-export class Select extends Dropdown {
-	constructor(props) {
-		super(props)
+export class Select extends React.Component<{
+	name: string,
+	text: string,
+	value: string,
+	search: bool,
+	children: React.ChildrenArray<React.Element<typeof Option>>
+	}> {
+	constructor() {
+		super()
 	}
 
 	render() {
 		const {search, ...others} = this.props;
 		return (
 			<Dropdown isSelect={true} {...others}>
-				<Menu search={search||false}>
+				<Menu search={search || false}>
 					{this.props.children}
 				</Menu>
 			</Dropdown>

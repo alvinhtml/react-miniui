@@ -1,12 +1,14 @@
 /* @flow */
 
-import React, { Component } from 'react';
+import React from 'react';
 
 import '../scss/badge.scss';
 
 type Props = {
 	color: string;
 	space: string;
+	className: string;
+	children: any;
 }
 
 

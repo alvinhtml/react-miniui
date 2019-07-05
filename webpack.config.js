@@ -99,7 +99,7 @@ module.exports = {
                 use: {
                     loader: 'url-loader',
                     options: {
-                        limit: 50 * 1024,
+                        limit: 20 * 1024,
                         outputPath: './',
                     }
                 }
@@ -108,7 +108,8 @@ module.exports = {
     },
 
     externals: {
-        react: 'react'
+        react: 'react',
+        'react-dom': 'react-dom'
     },
 
 

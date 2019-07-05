@@ -3,6 +3,7 @@ module.exports = {
         "browser": true,
         "es6": true
     },
+    "parser": "babel-eslint",
     "extends": [
         "eslint:recommended",  //规则默认都是关闭的，使用 eslint:recommended 启用推荐规则。参见 http://eslint.cn/docs/rules/
         "plugin:react/recommended"
@@ -19,7 +20,8 @@ module.exports = {
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "flowtype"
     ],
     "settings": {
         "react": {
@@ -27,5 +29,7 @@ module.exports = {
         }
     },
     "rules": {
+      "flowtype/define-flow-type": 1,
+      "flowtype/use-flow-type": 1
     }
 };

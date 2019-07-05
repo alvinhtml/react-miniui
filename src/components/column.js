@@ -1,6 +1,6 @@
 /* @flow */
 
-import React, {Component} from 'react';
+import React from 'react';
 
 type Props = {
 	span: string;
@@ -9,6 +9,7 @@ type Props = {
 	order: string;
 	flex: string;
 	className: string;
+	children: any;
 }
 
 
@@ -45,6 +46,7 @@ export const Col = (props: Props) => {
 
 type RowProps = {
 	className: string;
+	children: any;
 }
 export const Row = (props: RowProps) => {
 	const classNames = ['row'];
@@ -57,14 +59,13 @@ export const Row = (props: RowProps) => {
 };
 
 type FlexProps = {
-	justify: string;
-	align: string;
-	gutter: string;
 	className: string;
+	children: any;
 }
 
 export const Flex = (props: FlexProps) => {
-	const {justify, align, gutter, className, ...others} = props;
+	const classNames = [];
+	const {className, ...others} = props;
 
 	if (className) {
 		classNames.push(className);
