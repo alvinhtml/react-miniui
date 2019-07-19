@@ -1,0 +1,155 @@
+@import "./miniui.scss";
+
+/*******************************
+             Modal
+*******************************/
+.modal {
+  display: block;
+  position: absolute;
+  min-width: 560px;
+  max-width: 80%;
+  margin-bottom: 30px;
+  text-align: left;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  user-select: text;
+  z-index: 999;
+  animation: 0.3s modal-animate ease-out 1 forwards;
+
+
+  /*--------------
+       Close
+  ---------------*/
+  &>.modal-close {
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    font-size: 14px;
+    top: 20px;
+    right: 14px;
+    font-family: inherit;
+    display: block;
+    width: 20px;
+    height: 20px;
+    font-size: 24px;
+    line-height: 18px;
+    text-align: center;
+    color: #000;
+    transition: all .3s ease-out;
+
+    &:hover {
+        transform: rotate(180deg);
+    }
+  }
+  /*--------------
+       Header
+  ---------------*/
+  &>.modal-header {
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    padding: 1em 2em;
+    font-size: 1.14285714em;
+    line-height: 2em;
+    font-weight: bold;
+    border-radius: 0.325em 0.325em 0px 0px;
+  }
+  /*--------------
+       Content
+  ---------------*/
+  &>.modal-content {
+    display: table;
+    width: 100%;
+    position: relative;
+    padding: 2em;
+    background-color: #F4F4F4;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  /*--------------
+       Actions
+  ---------------*/
+  .modal-actions {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1em 2em;
+    text-align: right;
+    .button {
+      margin-left: 0.75em;
+    }
+  }
+
+
+  &.visible {
+    display: block;
+    visibility: visible;
+  }
+
+}
+
+/*--------------
+     Dimmer
+---------------*/
+.dimmer {
+  padding: 50px;
+  opacity: 1;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index:998;
+  background-color: rgba(0, 0, 0, 0);
+  animation: 0.3s dimmer-animate ease-out 1 forwards;
+}
+
+.hidden .modal {
+  animation: 0.3s modal-animate-reverse ease-out 1 forwards;
+}
+.hidden .dimmer {
+  animation: 0.3s dimmer-animate-reverse ease-out 1 forwards;
+}
+
+@keyframes dimmer-animate {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+ }
+
+@keyframes modal-animate {
+  from {
+    opacity: 0;
+    transform: scale(.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+ }
+
+@keyframes dimmer-animate-reverse {
+  from {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+ }
+
+@keyframes modal-animate-reverse {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(.8);
+  }
+ }

@@ -4,7 +4,7 @@
     "description": "A mini react UI library",
     "main": "dist/index.js",
     "scripts": {
-        "dev": "webpack-dev-server",
+        "dev": "rm -rf ./dist && webpack --mode development",
         "start": "webpack-dev-server",
         "lint": "npx eslint src/**/*.js && flow check",
         "flowcheck": "flow check",

@@ -277,6 +277,7 @@ export const Popovers = React.forwardRef<PPops, HTMLDivElement>(
 				root
 			);
 		}
+
 		return popover;
 	}
 );
