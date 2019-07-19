@@ -5,4 +5,4 @@ export {Badge} from './components/badge';
 export {Row, Flex, Col} from './components/column';
 export {Dropdown, Menu, Item, Select, Option} from './components/dropdown';
 export {OverlayTrigger, Popovers, Tooltip} from './components/overlay';
-export {Modal, ActiveModal, showModal, closeModal} from './components/modal';
+export {Modal, ActiveModal, showModal, closeModal, Alert, Confirm} from './components/modal';

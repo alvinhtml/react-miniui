@@ -2,11 +2,12 @@
 
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import {Button} from './button';
 import '../scss/modal.scss';
 
 type Props = {
-	className: string;
-  size: any;
+	className?: string;
+  size?: any;
 	children: React.Node;
 }
 
@@ -150,4 +151,35 @@ export class ActiveModal extends React.Component<{}, {
 		}
 		return modal;
 	}
+}
+
+export const Alert = (content: React.Node) => {
+	const modalComponent = (
+		<Modal>
+			<Modal.Title>提示信息</Modal.Title>
+			<Modal.Content>{content}</Modal.Content>
+			<Modal.Actions>
+				<Button onClick={() => closeModal()}>关闭</Button>
+			</Modal.Actions>
+		</Modal>
+	);
+	showModal(modalComponent);
+}
+
+export const Confirm = (content: React.Node, callback: Function) => {
+	const handleClick = () => {
+		callback && callback();
+		closeModal();
+	}
+	const modalComponent = (
+		<Modal>
+			<Modal.Title>提示信息</Modal.Title>
+			<Modal.Content>{content}</Modal.Content>
+			<Modal.Actions>
+				<Button onClick={() => closeModal()}>取消</Button>
+				<Button color="green" onClick={handleClick}>确认</Button>
+			</Modal.Actions>
+		</Modal>
+	);
+	showModal(modalComponent);
 }

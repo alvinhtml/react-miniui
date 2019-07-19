@@ -63,7 +63,7 @@ export class Dropdown extends React.Component <Props, {
 
 	show() {
 		// document 绑定 mouseup事件， 触发时关闭 dromdown
-		document.addEventListener('mouseup', this.mouseupCallback, false);
+		document.addEventListener('mouseup', this.mouseupCallback.bind(this), false);
 
 		this.setState({
 			opend: true
@@ -110,8 +110,10 @@ export class Dropdown extends React.Component <Props, {
 					value,
 					text
 				});
+				this.props.onChange && this.props.onChange(value, text);
 			}
 		}
+		this.hide();
 	}
 
 	render() {
@@ -214,11 +216,12 @@ export class Menu extends React.Component <{
 export const Item = (props: {
 	className?: string,
 	disabled?: bool,
-	children: React.Node,
 	href?: string,
+	value: string,
+	children: React.Node
 }) => {
 	const classNames = ['item'];
-	const {className, disabled, ...others} = props;
+	const {className, disabled, value, ...others} = props;
 
 	if (className) {
 		classNames.push(className);
@@ -229,9 +232,9 @@ export const Item = (props: {
 	}
 
 	if (props.href) {
-		return (<a className={classNames.join(' ')} {...others}>{props.children}</a>);
+		return (<a className={classNames.join(' ')} data-value={value} {...others}>{props.children}</a>);
 	} else {
-		return (<div className={classNames.join(' ')} {...others}>{props.children}</div>);
+		return (<div className={classNames.join(' ')} data-value={value} {...others}>{props.children}</div>);
 	}
 }
 

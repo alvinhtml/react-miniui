@@ -10,7 +10,7 @@ import {Icon} from './icon';
 type Props = {
 	color?: string;
 	icon?: string;
-	type: string;
+	type?: string;
 	size?: string;
 	block?: string;
 	space?: string;
