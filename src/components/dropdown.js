@@ -9,7 +9,7 @@ import {Icon} from './icon';
 
 type Props = {
 	value: string;
-	text: string;
+	text?: React.Node;
 	onChange?: Function;
 	className?: string;
 	dropArrow?: bool,
@@ -27,27 +27,23 @@ type Props = {
 export class Dropdown extends React.Component <Props, {
 		value: string,
 		opend: bool,
-		text: string
+		text: React.Node
 }> {
-	// mainRef: ?HTMLDivElement;
-
-	constructor() {
-		super()
+	constructor(props: Props) {
+		super(props)
 
 		this.state = {
 			value: '',
 			opend: false,
-			text: '请选择',
+			text: props.text ? props.text : '',
 		}
-
-		// this.mainRef = React.createRef();
 	}
 
 	componentWillMount() {
 		const {value, text} = this.props;
 		this.setState({
 			value: (typeof value === 'undefined') ? '' : value,
-			text: (typeof text === 'undefined') ? '请选择' : text
+			text: (typeof text === 'undefined') ? '' : text
 		});
 	}
 
@@ -137,7 +133,7 @@ export class Dropdown extends React.Component <Props, {
 						<Icon icon="fa-down-dir" />
 					</div>
 			)
-			: <div className="dropdown-header">请选择<Icon icon="fa-down-dir" /></div>;
+			: <div className="dropdown-header">{this.props.text}<Icon icon="fa-down-dir" /></div>;
 		let childrenMenu = children;
 
 		if (React.Children.count(children) > 1) {
@@ -262,19 +258,18 @@ export class Option extends React.Component<{
 
 export class Select extends React.Component<{
 	name: string,
-	text: string,
-	value: string,
-	search: bool,
+	value?: string,
+	search?: bool,
 	children: React.ChildrenArray<React.Element<typeof Option>>
 	}> {
-	constructor() {
-		super()
-	}
-
 	render() {
-		const {search, ...others} = this.props;
+		const children: Array<React.Element<typeof Option>> = React.Children.toArray(this.props.children);
+		const {name, search, value = children[0] && children[0].props.value} = this.props;
+		const item = children.find((v) => (v.props.value === value));
+		const text = item ? item.props.children : '';
+
 		return (
-			<Dropdown isSelect={true} {...others}>
+			<Dropdown isSelect={true} value={value} text={text} name={name}>
 				<Menu search={search || false}>
 					{this.props.children}
 				</Menu>
