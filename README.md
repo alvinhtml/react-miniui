@@ -1,6 +1,6 @@
 # react-miniui
 
-A mini react UI library.
+A mini react UI library. Demo: [http://mui.alvinhtml.com/](http://mui.alvinhtml.com/)
 
 
 ## Installation
@@ -38,6 +38,8 @@ export default class ButtonPage extends Component {
 ## Components
 
 Row, Flex, Col, Button, ButtonGroup, Input, Textarea, FormGroup, Icon, Badge, Dropdown, Menu, Item Select, Option
+
+### Dropdown
 
 ```js
 export default class DropdownPage extends Component {
