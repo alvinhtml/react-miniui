@@ -1,6 +1,6 @@
 {
     "name": "react-miniui",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "description": "A mini react UI library",
     "main": "dist/index.js",
     "scripts": {
