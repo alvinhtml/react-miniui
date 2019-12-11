@@ -120,7 +120,7 @@ export class ActiveModal extends React.Component<{}, {
 
 	modalRef: {current: null | HTMLDivElement} = React.createRef();
 
-	componentWillMount() {
+	componentDidMount() {
 		modalManager = this;
 	}
 

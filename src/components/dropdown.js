@@ -33,18 +33,10 @@ export class Dropdown extends React.Component <Props, {
 		super(props)
 
 		this.state = {
-			value: '',
 			opend: false,
-			text: props.text ? props.text : '',
+			value: (typeof props.value === 'undefined') ? '' : props.value,
+			text: (typeof props.text === 'undefined') ? '' : props.text
 		}
-	}
-
-	componentWillMount() {
-		const {value, text} = this.props;
-		this.setState({
-			value: (typeof value === 'undefined') ? '' : value,
-			text: (typeof text === 'undefined') ? '' : text
-		});
 	}
 
 	//document 点击事件，关闭 dromdown
