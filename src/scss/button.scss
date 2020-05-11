@@ -12,9 +12,9 @@
 	line-height: 2.57142857em;
 	outline: none;
 	user-select: none;
-	color: rgba(0, 0, 0, 0.6);
- 	background-color: $lightgray;
-	border: 0;
+	color: #333;
+ 	background-color: #fff;
+	border: 1px solid $gray;
 	border-radius: 0.25em;
 	font-size: 14px;
 	font-weight: normal;
@@ -31,7 +31,8 @@
 	// Hover
 	&:hover,
 	&.hover {
-		background-color: #cacbcd;
+		background-color: $lightgray;
+		border-color: #8c8c8c;
 	}
 	&:hover icon {
 		opacity: 0.85;
@@ -43,6 +44,10 @@
 	&:active,
 	&:focus {
 		background-color: #babbbc;
+	}
+
+	i {
+		vertical-align: middle;
 	}
 
 	// Size
@@ -59,17 +64,34 @@
 		padding: 0.33333333em;
 	}
 
-	&.small {
+	&.tiny {
 		font-size: 12px !important;
 		padding: 0 0.5em;
 		height: 2em;
 		line-height: 2em;
 		font-weight: normal;
+
+		i {
+			font-size: 14px;
+		}
 	}
-	&.label.small { padding-left: 2.5em; }
-	&.label.small i {
+	&.label.tiny { padding-left: 2.5em; }
+	&.label.tiny i {
 		width: 2em;
 		padding: 0.5em;
+	}
+
+	&.small {
+		font-size: 14px !important;
+		padding: 0 0.71428571em;
+		height: 2.28571429em;
+		line-height: 2.28571429em;
+		font-weight: normal;
+	}
+	&.label.small { padding-left: 3em; }
+	&.label.small i {
+		width: 2.28571429em;
+		padding: 0.64285714em;
 	}
 
 	&.large {
