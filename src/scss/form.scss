@@ -14,7 +14,7 @@ input[type="tel"] {
 	padding: 0.5em 1em;
 	font-size: 1em;
 	background-color: $white;
-	border: 1px solid #eee;
+	border: 1px solid $gray;
 	outline: none;
 	color: #838fa1;
 	border-radius: 0.25em;
@@ -55,10 +55,17 @@ input[type="tel"] {
 		height: 1.66666666em;
 	}
 
-	&.small {
+	&.tiny {
 		font-size: 12px !important;
 		padding: 0.5em 0.5em;
 		height: 2em;
+		font-weight: normal;
+	}
+
+	&.small {
+		font-size: 14px !important;
+		padding: 0.5em 0.5em;
+		height: 2.28571429em;
 		font-weight: normal;
 	}
 

@@ -12,7 +12,7 @@
 	line-height: 2.57142857em;
 	outline: none;
 	user-select: none;
-	color: #333;
+	color: rgba(0, 0, 0, .6);
  	background-color: #fff;
 	border: 1px solid $gray;
 	border-radius: 0.25em;
@@ -26,7 +26,7 @@
 	box-sizing: border-box;
 	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 	transition: all 0.25s ease;
-	box-shadow: none;
+	box-shadow: 0 0 0 0 rgba(34,36,38,.15) inset;
 
 	// Hover
 	&:hover,
