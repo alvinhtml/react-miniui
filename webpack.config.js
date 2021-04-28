@@ -54,15 +54,6 @@ module.exports = {
                 ]
             },
             {
-                test: /\.less$/,
-                use: [
-                    MiniCssExtractPlugin.loader,
-                    'css-loader',
-                    'postcss-loader',
-                    'less-loader'
-                ]
-            },
-            {
                 test: /\.(scss|sass)$/,
                 use: [
                     MiniCssExtractPlugin.loader,
@@ -117,6 +108,16 @@ module.exports = {
         new MiniCssExtractPlugin({
             filename: 'miniui.css'
         }),
+        new FileManagerPlugin({
+          events: {
+            onEnd: {
+              copy: [
+                { source: '/dist/index.js', destination: '/Users/alvin/coder/alvin-project/react-miniui-docs/node_modules/react-miniui/dist' },
+                { source: '/dist/miniui.css', destination: '/Users/alvin/coder/alvin-project/react-miniui-docs/node_modules/react-miniui/dist' },
+              ]
+            }
+          }
+        })
     ],
 
     watch: true,

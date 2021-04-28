@@ -44,10 +44,15 @@ export class Modal extends React.Component<Props, State> {
 			const {offsetWidth, offsetHeight} = modalElement;
 			const windowHeight: number = window.innerHeight;
 
+			// 加上页面滚动条的距离
+			const pageYOffset: number = window.pageYOffset;
+
 			this.setState({
 				style: {
 					marginLeft: - (offsetWidth / 2) + 'px',
-					marginTop: - ((windowHeight - 60 < offsetHeight ? windowHeight - 60 : offsetHeight) / 2) + 'px',
+
+					//（windowHeight - 60）弹窗上下留出一点边距
+					marginTop: (- ((offsetHeight > (windowHeight - 60) ? (windowHeight - 60) : offsetHeight) / 2) + pageYOffset) + 'px',
 					left: '50%',
 					top: '50%'
 				}
