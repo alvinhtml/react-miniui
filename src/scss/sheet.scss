@@ -1,0 +1,149 @@
+@import "./miniui.scss";
+
+/*******************************
+             Modal
+*******************************/
+.sheet {
+  display: block;
+  position: fixed;
+  background-color: #FFFFFF;
+  user-select: text;
+  z-index: 999;
+  transition: position 0.3s ease-out;
+
+  &.rtl {
+    top: 0;
+    bottom: 0;
+    right: auto;
+    left: 100vw;
+  }
+  &.ltr {
+    top: 0;
+    bottom: 0;
+    right: 100vw;
+    left: auto;
+  }
+  &.btt {
+    top: 100vh;
+    bottom: auto;
+    right: 0;
+    left: 0;
+  }
+  &.ttb {
+    top: auto;
+    bottom: 100vh;
+    right: 0;
+    left: 0;
+  }
+
+  &.medium {
+    width: 48%;
+  }
+  &.small {
+    width: 25%;
+  }
+  &.large {
+    width: 75%;
+  }
+
+
+  /*--------------
+       Close
+  ---------------*/
+  &>.sheet-close {
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+    font-size: 14px;
+    top: 20px;
+    right: 14px;
+    font-family: inherit;
+    display: block;
+    width: 20px;
+    height: 20px;
+    font-size: 24px;
+    line-height: 18px;
+    text-align: center;
+    color: #000;
+    transition: all .3s ease-out;
+
+    &:hover {
+        transform: rotate(180deg);
+    }
+  }
+  /*--------------
+       Header
+  ---------------*/
+  &>.sheet-header {
+    box-sizing: border-box;
+    margin: 0;
+    width: 100%;
+    padding: 1em 2em;
+    font-size: 1.14285714em;
+    line-height: 2em;
+    font-weight: bold;
+
+  }
+  /*--------------
+       Content
+  ---------------*/
+  &>.sheet-content {
+    display: table;
+    width: 100%;
+    position: relative;
+    padding: 2em;
+    background-color: #F4F4F4;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    box-sizing: border-box;
+  }
+
+  &.visible {
+    display: block;
+    visibility: visible;
+  }
+
+}
+
+/*--------------
+     Dimmer
+---------------*/
+.dimmer {
+  padding: 50px;
+  opacity: 1;
+  overflow: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  z-index:998;
+  background-color: rgba(0, 0, 0, 0);
+  animation: 0.3s dimmer-animate ease-out 1 forwards;
+}
+
+.hidden .sheet {
+  transition: position 0.3s ease-out;
+}
+.hidden .dimmer {
+  transition: position 0.3s ease-out;
+}
+
+@keyframes dimmer-animate {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+}
+
+@keyframes dimmer-animate-reverse {
+  from {
+    background-color: rgba(0, 0, 0, 0.65);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
