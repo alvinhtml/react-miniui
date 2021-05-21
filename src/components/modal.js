@@ -89,7 +89,7 @@ let modalManager = null;
 
 export function showModal(modal: React.Node) {
 	if (!modalManager) {
-    throw new Error('Not active modal manager');
+    throw new Error('Not active modal manager, Please add &lt;Miniui /&gt; component to root component. http://mui.alvinhtml.com/modal');
   }
 
 	modalManager.setState({
@@ -99,7 +99,7 @@ export function showModal(modal: React.Node) {
 
 export function closeModal() {
 	if (!modalManager) {
-    throw new Error('Not active modal manager');
+    throw new Error('Not active modal manager, Please add &lt;Miniui /&gt; component to root component. http://mui.alvinhtml.com/modal');
   }
 
 	const modalWarpper: HTMLDivElement | null = modalManager.modalRef.current;

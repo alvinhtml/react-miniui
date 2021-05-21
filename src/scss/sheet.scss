@@ -9,35 +9,39 @@
   background-color: #FFFFFF;
   user-select: text;
   z-index: 999;
-  transition: position 0.3s ease-out;
+  transition: all 0.3s ease-out;
 
   &.rtl {
     top: 0;
     bottom: 0;
-    right: auto;
-    left: 100vw;
+    right: -100%;
+    left: auto;
+    height: 100vh;
   }
   &.ltr {
     top: 0;
     bottom: 0;
     right: 100vw;
     left: auto;
+    height: 100vh;
   }
   &.btt {
     top: 100vh;
     bottom: auto;
     right: 0;
     left: 0;
+    width: 100vw;
   }
   &.ttb {
     top: auto;
     bottom: 100vh;
     right: 0;
     left: 0;
+    width: 100vw;
   }
 
   &.medium {
-    width: 48%;
+    width: 50%;
   }
   &.small {
     width: 25%;
@@ -65,10 +69,9 @@
     line-height: 18px;
     text-align: center;
     color: #000;
-    transition: all .3s ease-out;
 
     &:hover {
-        transform: rotate(180deg);
+        color: #333;
     }
   }
   /*--------------
@@ -82,28 +85,27 @@
     font-size: 1.14285714em;
     line-height: 2em;
     font-weight: bold;
+    border-bottom: 1px solid $lightgray;
 
   }
   /*--------------
        Content
   ---------------*/
   &>.sheet-content {
-    display: table;
     width: 100%;
-    position: relative;
+    position: absolute;
     padding: 2em;
-    background-color: #F4F4F4;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -ms-box-sizing: border-box;
     box-sizing: border-box;
+    overflow: scroll;
+    top: 4.5em;
+    bottom: 0;
+    left: 0;
   }
 
   &.visible {
     display: block;
     visibility: visible;
   }
-
 }
 
 /*--------------
@@ -123,11 +125,15 @@
   animation: 0.3s dimmer-animate ease-out 1 forwards;
 }
 
-.hidden .sheet {
-  transition: position 0.3s ease-out;
+.hidden {
+  .sheet {
+    &.rtl {
+      animation: 0.3s sheet-animate-reverse-rtl ease-in 1 forwards;
+    }
+  }
 }
 .hidden .dimmer {
-  transition: position 0.3s ease-out;
+  animation: 0.3s dimmer-animate-reverse ease-out 1 forwards;
 }
 
 @keyframes dimmer-animate {
@@ -147,3 +153,13 @@
     background-color: rgba(0, 0, 0, 0);
   }
 }
+
+@keyframes sheet-animate-reverse-rtl {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    right: -100%;
+  }
+ }
