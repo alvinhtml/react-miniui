@@ -180,6 +180,10 @@
 			border: 1px solid $lightgray;
 		}
 	}
+
+	&+.button {
+		margin-left: 12px;
+	}
 }
 
 button::-moz-focus-inner,

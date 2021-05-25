@@ -86,9 +86,13 @@ dl.mui, .mui dl { display:list-item; list-style: outside disc; }
 
 table {
   box-sizing: border-box;
-  line-height: 1.28571428em;
+  line-height: 2.57142857em;
   border: 1px solid $lightgray;
   background-color: $white;
+
+  &.table-block {
+    width: 100%;
+  }
 
   thead, tbody {
     border-radius:5px;
@@ -122,7 +126,6 @@ table {
   input, select {
     font-size:12px;
   }
-
 }
 
 // Quote

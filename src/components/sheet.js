@@ -40,8 +40,28 @@ export class Sheet extends React.Component<Props, State> {
 			if (direction === 'rtl') {
 				this.setState({
 					style: {
-						left: 'auto',
 						right: 0
+					}
+				});
+			}
+			if (direction === 'ltr') {
+				this.setState({
+					style: {
+						left: 0
+					}
+				});
+			}
+			if (direction === 'btt') {
+				this.setState({
+					style: {
+						bottom: 0
+					}
+				});
+			}
+			if (direction === 'ttb') {
+				this.setState({
+					style: {
+						top: 0
 					}
 				});
 			}
@@ -51,6 +71,7 @@ export class Sheet extends React.Component<Props, State> {
 	render() {
 		const {className = '', size = 'medium', children, direction = 'rtl', title} = this.props;
 		const {style} = this.state;
+		console.log("size", size);
 		const classNames = ['sheet', size, direction];
 
 		return (
@@ -67,7 +88,7 @@ export class Sheet extends React.Component<Props, State> {
 
 let sheetManager = null;
 
-export function openSheet(title: string, sheet: React.Node, direction: 'rtl' | 'ltr' | 'btt' | 'ttb' = 'rtl') {
+export function openSheet(title: string, sheet: React.Node, params: Object) {
 	if (!sheetManager) {
     throw new Error('Not active sheet manager, Please add &lt;Miniui /&gt; component to root component. http://mui.alvinhtml.com/sheet');
   }
@@ -76,10 +97,13 @@ export function openSheet(title: string, sheet: React.Node, direction: 'rtl' | '
 
 	console.log("title, sheet, direction", title, sheet, direction);
 
+	const {direction = 'rtl', size = 'medium'} = params;
+
 	sheetManager.setState({
 		title,
 		sheet,
-		direction
+		direction,
+		size
 	});
 }
 
@@ -106,6 +130,7 @@ type SheetParams = {
 	sheet: React.Node;
 	title: string;
 	direction: 'rtl' | 'ltr' | 'btt' | 'ttb';
+	size: string;
 }
 
 export class ActiveSheet extends React.Component<{}, SheetParams> {
@@ -113,7 +138,8 @@ export class ActiveSheet extends React.Component<{}, SheetParams> {
 	state: SheetParams = {
     sheet: null,
 		title: 'Sheet',
-		direction: 'rtl'
+		direction: 'rtl',
+		size: 'medium'
   };
 
 	sheetRef: {current: null | HTMLDivElement} = React.createRef();
@@ -133,7 +159,7 @@ export class ActiveSheet extends React.Component<{}, SheetParams> {
 	}
 
 	render() {
-		const {sheet, title, direction} = this.state;
+		const {sheet, title, direction, size} = this.state;
 
 		if (!sheet) {
 			return null;
@@ -148,7 +174,7 @@ export class ActiveSheet extends React.Component<{}, SheetParams> {
 			return ReactDOM.createPortal(
 				<div className={`sheet-wrapper ${direction}`} ref={this.sheetRef}>
 					{sheet &&
-						<Sheet title={title} direction={direction}>
+						<Sheet title={title} direction={direction} size={size}>
 							<Sheet.Title>{title}</Sheet.Title>
 							<Sheet.Content>{sheet}</Sheet.Content>
 						</Sheet>

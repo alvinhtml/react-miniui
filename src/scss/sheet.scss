@@ -21,33 +21,48 @@
   &.ltr {
     top: 0;
     bottom: 0;
-    right: 100vw;
-    left: auto;
+    right: auto;
+    left: -100%;
     height: 100vh;
   }
   &.btt {
-    top: 100vh;
-    bottom: auto;
+    top: auto;
+    bottom: -100vh;
     right: 0;
     left: 0;
     width: 100vw;
   }
   &.ttb {
-    top: auto;
-    bottom: 100vh;
+    top: -100vh;
+    bottom: auto;
     right: 0;
     left: 0;
     width: 100vw;
   }
 
   &.medium {
-    width: 50%;
+    &.ltr, &.rtl {
+      width: 50vw;
+    }
+    &.btt, &.ttb {
+      height: 50vh;
+    }
   }
   &.small {
-    width: 25%;
+    &.ltr, &.rtl {
+      width: 25vw;
+    }
+    &.btt, &.ttb {
+      height: 25vh;
+    }
   }
   &.large {
-    width: 75%;
+    &.ltr, &.rtl {
+      width: 75vw;
+    }
+    &.btt, &.ttb {
+      height: 75vh;
+    }
   }
 
 
@@ -130,6 +145,15 @@
     &.rtl {
       animation: 0.3s sheet-animate-reverse-rtl ease-in 1 forwards;
     }
+    &.ltr {
+      animation: 0.3s sheet-animate-reverse-ltr ease-in 1 forwards;
+    }
+    &.btt {
+      animation: 0.3s sheet-animate-reverse-btt ease-in 1 forwards;
+    }
+    &.ttb {
+      animation: 0.3s sheet-animate-reverse-ttb ease-in 1 forwards;
+    }
   }
 }
 .hidden .dimmer {
@@ -161,5 +185,32 @@
   to {
     opacity: 0;
     right: -100%;
+  }
+ }
+@keyframes sheet-animate-reverse-ltr {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    left: -100%;
+  }
+ }
+@keyframes sheet-animate-reverse-btt {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    bottom: -100vh;
+  }
+ }
+@keyframes sheet-animate-reverse-ttb {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    top: -100vh;
   }
  }
