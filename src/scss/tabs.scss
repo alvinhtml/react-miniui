@@ -1,0 +1,43 @@
+@import "./miniui.scss";
+
+
+.mui-tabs {
+	.tabs-nav {
+		display: flex;
+		align-items: flex-start;
+		height: 2.57142857em;
+		border-bottom: 1px solid $gray;
+		margin-bottom: 16px;
+
+		li {
+			border-top-left-radius: 0.25em;
+			border-top-right-radius: 0.25em;
+			color: rgba(0, 0, 0, .6);
+			padding: 0 1.28571429em;
+			margin: 0 8px 0 0;
+			line-height: 2.57142857em;
+			box-sizing: border-box;
+			background-color: $white;
+			cursor: pointer;
+
+			&.active {
+				border: 1px solid $gray;
+				border-bottom: 0;
+				cursor: default;
+				
+				&:hover {
+					background-color: $white;
+				}
+			}
+
+			&:hover {
+				background-color: $lightgray;
+				border-color: #8c8c8c;
+			}
+		}
+	}
+
+	.tabs-body {
+
+	}
+}

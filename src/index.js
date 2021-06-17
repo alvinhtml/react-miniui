@@ -6,5 +6,6 @@ export {Row, Flex, Col} from './components/column';
 export {Dropdown, Menu, Item, Select, Option} from './components/dropdown';
 export {OverlayTrigger, Popovers, Tooltip} from './components/overlay';
 export {Modal, ActiveModal, showModal, closeModal, Alert, Confirm} from './components/modal';
+export {Tabs, Tab} from './components/Tab';
 export {openSheet} from './components/sheet';
 export {Miniui} from './components/miniui';
