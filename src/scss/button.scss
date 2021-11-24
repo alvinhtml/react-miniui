@@ -197,20 +197,20 @@ input[type="submit"]::-moz-focus-inner {
 
 // Color
 @mixin button-style ($name, $color) {
-	.#{$name}.button {
+	.#{"" + $name}.button {
 		background-color: $color;
 		color: $white;
 		border: 0;
 	}
-	.#{$name}.button:hover {
+	.#{"" + $name}.button:hover {
 		background-color: lighten($color, 5%);
 	}
-	.#{$name}.button.active,
-	.#{$name}.button:active,
-	.#{$name}.button:focus {
+	.#{"" + $name}.button.active,
+	.#{"" + $name}.button:active,
+	.#{"" + $name}.button:focus {
 		background-color: darken($color, 10%);
 	}
-	.#{$name}.button.loading::after {
+	.#{"" + $name}.button.loading::after {
 			background: transparent url(../images/loader.svg) no-repeat center center;
 			background-size: 24px 24px;
 	}
@@ -229,19 +229,19 @@ input[type="submit"]::-moz-focus-inner {
 // style
 
 @mixin button-basic ($name, $color) {
-	.#{$name}.button.basic {
+	.#{"" + $name}.button.basic {
 		background-color: transparent;
 		color: $color;
 		border: 1px solid $color;
 	}
-	.#{$name}.button.basic:hover {
+	.#{"" + $name}.button.basic:hover {
 		color: $white;
 		border: 1px solid $color;
 		background-color: $color;
 	}
-	.#{$name}.button.basic.active,
-	.#{$name}.button.basic:active,
-	.#{$name}.button.basic:focus {
+	.#{"" + $name}.button.basic.active,
+	.#{"" + $name}.button.basic:active,
+	.#{"" + $name}.button.basic:focus {
 		color: $white;
 		border: 1px solid darken($color, 10%);
 		background-color: darken($color, 10%);

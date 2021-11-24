@@ -121,11 +121,11 @@ select {
 
 //color
 @mixin input-color ($name, $color) {
-	input.#{$name} {
+	input.#{"" + $name} {
 		color: $color;
 		border: 1px solid lighten($color,20%);
 	}
-	input.#{$name}:hover, input.#{$name}:focus {
+	input.#{"" + $name}:hover, input.#{"" + $name}:focus {
 		color: $color;
 		border: 1px solid $color;
 	}

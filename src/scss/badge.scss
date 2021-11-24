@@ -4,7 +4,7 @@
 
 // Color
 @mixin badge-style ($name, $color) {
-	&.#{$name} {
+	&.#{"" + $name} {
 		background-color: $color;
 	}
 }
@@ -13,8 +13,8 @@
 .badge {
 	display: inline-block;
 	padding: .25em .4em;
-	height: 1em;
-	min-width: .7015em;
+	height: 1.5em;
+	min-width: 1.5015em;
 	color: $white;
  	background-color: $gray;
 	border-radius: 0.25rem;
@@ -26,6 +26,7 @@
 	vertical-align: baseline;
 	font-family: inherit;
 	transition: background-color 0.25s ease, color 0.25s ease;
+	box-sizing: border-box;
 
 	// Shape
 	&.circle {

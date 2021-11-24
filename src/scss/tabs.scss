@@ -1,6 +1,5 @@
 @import "./miniui.scss";
 
-
 .mui-tabs {
 	.tabs-nav {
 		display: flex;
@@ -10,6 +9,7 @@
 		margin-bottom: 16px;
 
 		li {
+			list-style: none;
 			border-top-left-radius: 0.25em;
 			border-top-right-radius: 0.25em;
 			color: rgba(0, 0, 0, .6);
@@ -24,7 +24,7 @@
 				border: 1px solid $gray;
 				border-bottom: 0;
 				cursor: default;
-				
+
 				&:hover {
 					background-color: $white;
 				}

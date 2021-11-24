@@ -132,6 +132,12 @@
       }
     }
 
+    .pop-title {
+      font-size: 1.25em;
+      font-weight: normal;
+      margin: 0 0 0.5em 0;
+    }
+
     /*--------------
          Colors
     ---------------*/
@@ -139,10 +145,6 @@
       background-color:rgba(0,0,0,1);
       color: #fff;
       border-color: rgba(0,0,0,1);
-
-      .pop-title {
-        color: #fff;
-      }
     }
     &.pop-white::before {
       background-color:rgba(0,0,0,1);
@@ -153,9 +155,6 @@
       background-color: #fff;
       color: #666;
       border-color:rgba(39, 41, 43, 0.15);
-      .pop-title {
-        color: #666;
-      }
     }
     &.pop-white::before {
       background-color: #fff;
@@ -166,9 +165,6 @@
       background-color: #fff8db;
       color: #b58105;
       border-color:rgba(39, 41, 43, 0.15);
-      .pop-title {
-        color: #b58105;
-      }
     }
     &.pop-yellow::before {
       background-color: #fff8db;
@@ -179,9 +175,6 @@
       background-color: #ffe8e6;
       color: #d95c5c;
       border-color:rgba(39, 41, 43, 0.15);
-      .pop-title {
-        color: #d95c5c;
-      }
     }
     &.pop-red::before {
       background-color: #ffe8e6;

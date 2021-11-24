@@ -59,12 +59,7 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'postcss-loader',
-                    {
-                      loader: 'sass-loader',
-                      options: {
-                        includePaths: ['./node_modules/normalize-scss/sass']
-                      }
-                    }
+                    'sass-loader'
                 ]
             },
             {

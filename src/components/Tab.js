@@ -23,9 +23,6 @@ export class Tabs extends React.Component<TabsProps, State> {
 	constructor(props: TabsProps) {
 		super(props);
 
-
-		console.log("React.Children", React.Children, props.children);
-
 		this.state = {
 			activeKey: props.defaultActiveKey || (Array.isArray(props.children) ? props.children[0].props.eventKey : props.children.props.eventKey)
 		}

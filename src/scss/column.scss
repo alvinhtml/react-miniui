@@ -1,28 +1,30 @@
 // column
+@use 'sass:math';
 
-@function column-width ($ratio, $amount, $gutter: 2%) {
-  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + ($ratio - 1) * $gutter;
+@function column-width ($ratio, $amount: 12, $gutter: 2%) {
+  @return math.div(100% - $gutter * ($amount - 1), $amount) * $ratio + ($ratio - 1) * $gutter;
 }
 
 @function column-offset ($ratio, $amount, $gutter: 2%) {
-  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + ($ratio + 1) * $gutter;
+  @return math.div(100% - $gutter * ($amount - 1), $amount) * $ratio + ($ratio + 1) * $gutter;
+}
+//
+@function column-offset-first-child ($ratio, $amount, $gutter: 2%) {
+  @return math.div(100% - $gutter * ($amount - 1), $amount) * $ratio + $ratio * $gutter;
 }
 
-@function column-offset-first-child ($ratio, $amount, $gutter: 2%) {
-  @return (100% - ($amount - 1) * $gutter) / $amount * $ratio + $ratio * $gutter;
-}
 
 @mixin make-column($amount, $gutter, $prefix) {
   @for $i from 1 through $amount {
     .col-#{$prefix}#{$i} {
       width: column-width($i, $amount, $gutter);
     }
-    .offset-#{$prefix}#{$i} {
-      margin-left: column-offset($i, $amount, $gutter);
-      &:first-child {
-        margin-left: column-offset-first-child($i, $amount, $gutter);
-      }
-    }
+    // .offset-#{$prefix}#{$i} {
+    //   margin-left: column-offset($i, $amount, $gutter);
+    //   &:first-child {
+    //     margin-left: column-offset-first-child($i, $amount, $gutter);
+    //   }
+    // }
   }
 }
 

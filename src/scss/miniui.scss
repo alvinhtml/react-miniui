@@ -25,11 +25,6 @@ $gray: #acacac;
 $black: #1b1c1d;
 
 
-
-
-
-
-
 $white: #ffffff;
 
 $dark: #000000;
@@ -47,7 +42,6 @@ $color-list: (red: $red, orange: $orange, yellow: $yellow, green: $green, teal: 
 
 
 // mixin
-
 @mixin clear-both {
   &::after,
   &::before {
@@ -60,23 +54,8 @@ $color-list: (red: $red, orange: $orange, yellow: $yellow, green: $green, teal: 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-// A modern alternative to CSS resets
-@import "normalize";
-
 // Miniui CSS resets
 @import "init.scss";
-
-
 @import "flex.scss";
 @import "column.scss";
 
